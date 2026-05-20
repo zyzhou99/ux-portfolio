@@ -1,0 +1,280 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ProfileFace from "../components/ProfileFace.astro";
+
+const projects = [
+  {
+    title: "DRSL",
+    type: "UX Research · Product Design",
+    description:
+      "A design project exploring digital health, accessibility, and user-centered service experiences.",
+    tags: ["UX Research", "UI Design", "Healthcare"],
+  },
+  {
+    title: "SmartMeds",
+    type: "Mobile App Design",
+    description:
+      "A medication management experience designed to help users build safer and clearer daily routines.",
+    tags: ["Mobile UX", "Interaction Design", "Accessibility"],
+  },
+  {
+    title: "WEDO",
+    type: "Service Design · UI/UX",
+    description:
+      "A collaborative platform concept focused on clearer communication, task flow, and user engagement.",
+    tags: ["Service Design", "Product Thinking", "Prototype"],
+  },
+  {
+    title: "Bentley",
+    type: "Experience Design",
+    description:
+      "A design exploration around premium user experience, brand tone, and digital interaction.",
+    tags: ["Brand UX", "Visual Design", "Case Study"],
+  },
+];
+
+const playgroundImages = [
+  {
+    src: "/images/playground/play-1.jpg",
+    alt: "Playground preview image 1",
+  },
+  {
+    src: "/images/playground/play-2.jpg",
+    alt: "Playground preview image 2",
+  },
+  {
+    src: "/images/playground/play-3.jpg",
+    alt: "Playground preview image 3",
+  },
+  {
+    src: "/images/playground/play-4.jpg",
+    alt: "Playground preview image 4",
+  },
+];
+---
+
+<BaseLayout
+  title="Ziyan Zhou | UI/UX Portfolio"
+  description="Ziyan Zhou is a UI/UX designer and frontend-oriented product builder creating accessible, delightful digital experiences."
+>
+  <Header />
+
+  <main>
+    <section class="relative overflow-hidden px-5 py-10 md:px-8 md:py-14 lg:px-12">
+			<div class="absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-[#f6c8a7]/40 blur-3xl"></div>
+			<div class="absolute bottom-10 right-[-10rem] h-96 w-96 rounded-full bg-[#f1d9a7]/50 blur-3xl"></div>
+
+			<div class="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+				<div class="order-2 flex min-h-[430px] items-center justify-center md:min-h-[520px] lg:order-1">
+					<ProfileFace />
+				</div>
+
+				<div class="order-1 lg:order-2">
+					<p class="mb-5 inline-flex rounded-full border border-[#1f1f1f]/10 bg-white/60 px-4 py-2 text-sm font-medium text-[#5f4a3d] shadow-sm">
+						UI/UX Designer · Frontend-Oriented Product Builder
+					</p>
+
+					<h1 class="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#1f1f1f] md:text-7xl lg:text-8xl">
+						Hi, I’m Ziyan 👋
+					</h1>
+
+					<p class="mt-8 max-w-2xl text-lg leading-8 text-[#4f4a45] md:text-xl">
+						I design accessible and delightful digital experiences, combining product thinking, visual design, and frontend implementation.
+					</p>
+
+					<div class="mt-10 flex flex-col gap-4 sm:flex-row">
+						<a
+							href="#work"
+							data-face-expression="down"
+							class="inline-flex items-center justify-center rounded-full bg-[#1f1f1f] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-[#d66f3f]"
+						>
+							View My Work
+						</a>
+
+						<a
+							href="#about"
+							data-face-expression="right"
+							class="inline-flex items-center justify-center rounded-full border border-[#1f1f1f]/20 px-6 py-3 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:border-[#1f1f1f]"
+						>
+							About Me
+						</a>
+					</div>
+
+					<div class="mt-10">
+						<p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+							Portfolio Focus
+						</p>
+
+						<div class="grid gap-4 sm:grid-cols-3">
+							<div
+								class="rounded-[1.5rem] border border-[#1f1f1f]/10 bg-white/70 p-5 shadow-sm transition-all duration-300 hover:-rotate-2 hover:shadow-xl"
+							>
+								<p class="text-sm uppercase tracking-[0.18em] text-[#d66f3f]">01</p>
+								<p class="mt-8 text-xl font-semibold">UX/UI Design</p>
+								<p class="mt-2 text-sm leading-6 text-[#5f5a54]">
+									Research, user flows, wireframes, interfaces, and design systems.
+								</p>
+							</div>
+
+							<div
+								class="rounded-[1.5rem] border border-[#1f1f1f]/10 bg-white/70 p-5 shadow-sm transition-all duration-300 hover:rotate-2 hover:shadow-xl"
+							>
+								<p class="text-sm uppercase tracking-[0.18em] text-[#d66f3f]">02</p>
+								<p class="mt-8 text-xl font-semibold">Web Experience</p>
+								<p class="mt-2 text-sm leading-6 text-[#5f5a54]">
+									Responsive websites, portfolio pages, event pages, and digital platforms.
+								</p>
+							</div>
+
+							<div
+								class="rounded-[1.5rem] border border-[#1f1f1f]/10 bg-white/70 p-5 shadow-sm transition-all duration-300 hover:-rotate-2 hover:shadow-xl"
+							>
+								<p class="text-sm uppercase tracking-[0.18em] text-[#d66f3f]">03</p>
+								<p class="mt-8 text-xl font-semibold">Frontend Collaboration</p>
+								<p class="mt-2 text-sm leading-6 text-[#5f5a54]">
+									Translating design ideas into clear, implementation-ready UI.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+    <section id="work" class="px-5 py-20 md:px-8 lg:px-12">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Selected Work
+            </p>
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              UX Projects
+            </h2>
+          </div>
+
+          <p class="max-w-md text-base leading-7 text-[#5f5a54]">
+            A selection of projects across product design, healthcare, service experience, and digital interaction.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <article class="group overflow-hidden rounded-[2rem] border border-[#1f1f1f]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d66f3f]/10">
+              <div class="flex min-h-[260px] items-end bg-gradient-to-br from-[#f7d8c1] via-[#f7efe1] to-[#e9d7b8] p-6">
+                <div class="flex h-24 w-24 items-center justify-center rounded-full bg-white/70 text-2xl font-semibold text-[#1f1f1f] shadow-sm transition-transform duration-300 group-hover:scale-105">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+              </div>
+
+              <div class="p-6 md:p-8">
+                <p class="mb-3 text-sm font-medium text-[#d66f3f]">
+                  {project.type}
+                </p>
+
+                <h3 class="text-3xl font-semibold tracking-[-0.03em]">
+                  {project.title}
+                </h3>
+
+                <p class="mt-4 leading-7 text-[#5f5a54]">
+                  {project.description}
+                </p>
+
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="rounded-full border border-[#1f1f1f]/10 px-3 py-1 text-xs text-[#5f5a54]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#"
+                  class="mt-8 inline-flex text-sm font-semibold text-[#1f1f1f] transition-colors hover:text-[#d66f3f]"
+                >
+                  View case study →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="playground" class="bg-[#f7efe1] px-5 py-20 md:px-8 lg:px-12">
+			<div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+				<div>
+					<p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+						Playground
+					</p>
+
+					<h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+						A space beyond the main work.
+					</h2>
+
+					<p class="mt-6 max-w-lg text-base leading-7 text-[#5f5a54]">
+						A small collection of visuals, side projects, and things I enjoy making.
+					</p>
+
+					<a
+						href="#playground"
+						class="mt-8 inline-flex items-center justify-center rounded-full border border-[#1f1f1f]/20 px-6 py-3 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:border-[#1f1f1f] hover:bg-white"
+					>
+						See More
+					</a>
+				</div>
+
+				<div class="grid gap-4 sm:grid-cols-2">
+					{playgroundImages.map((item) => (
+						<div class="overflow-hidden rounded-[1.5rem] border border-[#1f1f1f]/10 bg-white/70 shadow-sm">
+							<div class="aspect-[16/9] w-full overflow-hidden">
+								<img
+									src={item.src}
+									alt={item.alt}
+									class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+									loading="lazy"
+								/>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+    <section id="about" class="px-5 py-20 md:px-8 lg:px-12">
+      <div class="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-[#1f1f1f]/10 bg-white p-6 shadow-sm md:p-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            About
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            Designer with a builder’s mindset.
+          </h2>
+        </div>
+
+        <div class="space-y-5 text-base leading-8 text-[#4f4a45] md:text-lg">
+          <p>
+            I’m a UI/UX designer interested in accessible, delightful, and practical digital experiences. My work connects design strategy, visual systems, user flows, and implementation details.
+          </p>
+
+          <p>
+            I enjoy working on products that turn complex information or service processes into interfaces that feel clear and approachable.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-4">
+            {["UI/UX", "Product Design", "Web Design", "Frontend Collaboration", "Accessibility"].map((skill) => (
+              <span class="rounded-full bg-[#fffaf3] px-4 py-2 text-sm font-medium text-[#3b3b3b]">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,751 @@
+<div class="profile-face-stage" data-profile-face>
+  <div class="face-confetti" aria-hidden="true"></div>
+
+  <figure class="profile">
+    <div class="outline"></div>
+    <div class="hair"></div>
+    <div class="head"></div>
+    <div class="neck"></div>
+    <div class="bangsleft"></div>
+    <div class="bangsright"></div>
+    <div class="bangsmiddle"></div>
+    <div class="bangshide"></div>
+    <div class="shirt"></div>
+    <div class="earleft"></div>
+    <div class="earright"></div>
+    <div class="sideleft"></div>
+    <div class="sidelefthide"></div>
+
+    <div class="eyebrowsleft"></div>
+    <div class="browshideleft"></div>
+    <div class="eyebrowsright"></div>
+    <div class="browshideright"></div>
+
+    <div class="eyeleft eye" id="eye1"></div>
+    <div class="eyeright eye" id="eye2"></div>
+    <div class="eyehlleft eye" id="eyehl1"></div>
+    <div class="eyehlright eye" id="eyehl2"></div>
+
+    <div class="nose1 face"></div>
+    <div class="nose2"></div>
+    <div class="cheekleft face"></div>
+    <div class="cheekright face"></div>
+    <div class="mouth1 face"></div>
+    <div class="mouth2 face"></div>
+    <div class="tongue1"></div>
+    <div class="tongue2"></div>
+    <div class="neck2"></div>
+  </figure>
+</div>
+
+<style>
+  .profile-face-stage {
+    width: 360px;
+    height: 430px;
+    max-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile {
+    width: 270px;
+    height: 400px;
+    position: relative;
+    z-index: 2;
+    transform: scale(0.9);
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  @media (min-width: 768px) {
+    .profile {
+      transform: scale(0.95);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .profile {
+      transform: scale(1);
+    }
+  }
+
+  .outline {
+    background: #fccd97;
+    width: 270px;
+    height: 365px;
+    margin-left: -45px;
+    margin-bottom: -355px;
+    border-radius: 45% 45% 5% 5%;
+    position: relative;
+    z-index: -1;
+    box-shadow: 0 -5px 0 5px #fae3bc;
+  }
+
+  .head {
+    width: 180px;
+    height: 220px;
+    background: #f8cac0;
+    border-radius: 45%;
+    position: relative;
+    z-index: 2;
+    margin-top: -100px;
+  }
+
+  .neck {
+    width: 60px;
+    height: 60px;
+    border-radius: 0% 0% 30% 30%;
+    margin-left: 59px;
+    margin-top: -25px;
+    background: #f3bdb0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hair {
+    background: #1e1e1e;
+    width: 260px;
+    height: 355px;
+    margin-left: -40px;
+    margin-bottom: -316px;
+    border-radius: 45% 45% 5% 5%;
+    position: relative;
+    z-index: -1;
+  }
+
+  .bangsleft {
+    background: #1e1e1e;
+    width: 80px;
+    height: 140px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    margin-top: -285px;
+    margin-left: 10px;
+    transform: rotate(55deg);
+  }
+
+  .bangsright {
+    background: #1e1e1e;
+    width: 73px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 5;
+    margin-top: -155px;
+    margin-left: 111px;
+    transform: rotate(-30deg);
+  }
+
+  .bangsmiddle {
+    width: 50px;
+    height: 73px;
+    background: #1e1e1e;
+    position: relative;
+    z-index: 3;
+    border-radius: 100%;
+    margin-left: 70px;
+    margin-top: -75px;
+    transform: rotate(15deg);
+  }
+
+  .bangshide {
+    width: 50px;
+    height: 73px;
+    background: #f8cac0;
+    position: relative;
+    z-index: 4;
+    border-radius: 100%;
+    margin-left: 55px;
+    margin-top: -70px;
+    transform: rotate(15deg);
+  }
+
+  .shirt {
+    width: 220px;
+    height: 80px;
+    position: relative;
+    z-index: 0;
+    background: #ffe23f;
+    border-radius: 50% 50% 0 0;
+    margin-top: 130px;
+    margin-left: -20px;
+  }
+
+  .earleft {
+    width: 25px;
+    height: 45px;
+    background: #f3bdb0;
+    position: relative;
+    z-index: 1;
+    margin-top: -215px;
+    margin-left: -23px;
+    border-radius: 50% 5% 30% 50%;
+    transform: rotate(-3deg);
+  }
+
+  .earright {
+    width: 25px;
+    height: 45px;
+    background: #f3bdb0;
+    position: relative;
+    z-index: 1;
+    margin-top: -51px;
+    margin-left: 178px;
+    border-radius: 5% 50% 50% 30%;
+    transform: rotate(3deg);
+  }
+
+  .sideleft {
+    width: 50px;
+    height: 90px;
+    background: #1e1e1e;
+    position: relative;
+    z-index: 3;
+    border-radius: 0% 100% 100% 100%;
+    margin-left: -5px;
+    margin-top: -60px;
+    transform: rotate(-2deg);
+  }
+
+  .sidelefthide {
+    width: 50px;
+    height: 85px;
+    background: #f8cac0;
+    position: relative;
+    z-index: 3;
+    border-radius: 0% 100% 100% 100%;
+    margin-left: 6px;
+    margin-top: -85px;
+    transform: rotate(5deg);
+  }
+
+  .eyebrowsleft {
+    width: 48px;
+    height: 45px;
+    background: #1e1e1e;
+    position: relative;
+    z-index: 7;
+    margin-top: -73px;
+    margin-left: 20px;
+    border-radius: 45%;
+  }
+
+  .browshideleft {
+    width: 58px;
+    height: 45px;
+    background: #f8cac0;
+    position: relative;
+    z-index: 8;
+    border-radius: 45%;
+    margin-left: 15px;
+    margin-top: -38px;
+  }
+
+  .eyebrowsright {
+    width: 48px;
+    height: 45px;
+    background: #1e1e1e;
+    position: relative;
+    z-index: 7;
+    margin-top: -53px;
+    margin-left: 110px;
+    border-radius: 45%;
+  }
+
+  .browshideright {
+    width: 58px;
+    height: 45px;
+    background: #f8cac0;
+    position: relative;
+    z-index: 8;
+    border-radius: 45%;
+    margin-left: 105px;
+    margin-top: -38px;
+  }
+
+  .eyeleft {
+    width: 24px;
+    height: 23px;
+    background: #272323;
+    position: relative;
+    z-index: 8;
+    border-radius: 50%;
+    margin-left: 33px;
+    margin-top: -35px;
+    transition: width 90ms ease, height 90ms ease, margin 90ms ease, border 90ms ease, background 90ms ease, opacity 90ms ease;
+  }
+
+  .eyeright {
+    width: 24px;
+    height: 23px;
+    background: #272323;
+    position: relative;
+    z-index: 8;
+    border-radius: 50%;
+    margin-left: 123px;
+    margin-top: -23px;
+    transition: width 90ms ease, height 90ms ease, margin 90ms ease, border 90ms ease, background 90ms ease, opacity 90ms ease;
+  }
+
+  .eyehlleft {
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    z-index: 9;
+    margin-left: 48px;
+    margin-top: -14px;
+    transition: width 90ms ease, height 90ms ease, margin 90ms ease, border 90ms ease, background 90ms ease, opacity 90ms ease;
+  }
+
+  .eyehlright {
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    z-index: 9;
+    margin-left: 138px;
+    margin-top: -5px;
+    transition: width 90ms ease, height 90ms ease, margin 90ms ease, border 90ms ease, background 90ms ease, opacity 90ms ease;
+  }
+
+  .nose1 {
+    width: 15px;
+    height: 40px;
+    background: #f8b3a4;
+    position: relative;
+    z-index: 8;
+    border-radius: 50% 50% 35% 35%;
+    margin-left: 83px;
+    margin-top: -6px;
+    transition: width 90ms ease, height 90ms ease, margin 90ms ease, border 90ms ease, background 90ms ease, opacity 90ms ease;
+  }
+
+  .nose2 {
+    width: 0px;
+    height: 12px;
+    position: relative;
+    z-index: 8;
+    border-radius: 50% 30% 50% 50%;
+    margin-left: 78px;
+    margin-top: -10px;
+  }
+
+  .cheekleft {
+    width: 28px;
+    height: 15px;
+    background: #f8b3a4;
+    position: relative;
+    z-index: 10;
+    border-radius: 100%;
+    margin-top: -18px;
+    margin-left: 15px;
+  }
+
+  .cheekright {
+    width: 28px;
+    height: 15px;
+    background: #f8b3a4;
+    position: relative;
+    z-index: 10;
+    border-radius: 100%;
+    margin-top: -15px;
+    margin-left: 135px;
+  }
+
+  .mouth1 {
+    width: 25px;
+    height: 20px;
+    background: #3b2c2c;
+    border-radius: 0% 0% 0% 100%;
+    position: relative;
+    z-index: 8;
+    margin-left: 66px;
+    margin-top: 15px;
+  }
+
+  .mouth2 {
+    width: 25px;
+    height: 20px;
+    background: #3b2c2c;
+    border-radius: 0% 0% 100% 0%;
+    position: relative;
+    z-index: 8;
+    margin-left: 90px;
+    margin-top: -20px;
+  }
+
+  .tongue1 {
+    width: 0px;
+    height: 8px;
+    background: #e9826b;
+    position: relative;
+    z-index: 9;
+    margin-left: 80px;
+    margin-top: -8px;
+    border-radius: 100%;
+    transform: rotate(3deg);
+  }
+
+  .tongue2 {
+    width: 0px;
+    height: 10px;
+    background: #e9826b;
+    position: relative;
+    z-index: 9;
+    margin-left: 83px;
+    margin-top: -10.5px;
+    border-radius: 100%;
+    transform: rotate(-12deg);
+  }
+
+  .neck2 {
+    width: 28px;
+    height: 28px;
+    background: #f3bdb0;
+    position: relative;
+    z-index: 1;
+    margin-top: 45px;
+    margin-left: 75px;
+    transform: rotate(45deg);
+  }
+
+  .profile.is-smiling .eyeleft {
+    width: 34px;
+    height: 18px;
+    margin-left: 27px;
+    margin-top: -28px;
+    background: transparent;
+    border-radius: 50% 50% 0 0;
+    border-top: 6px solid #272323;
+  }
+
+  .profile.is-smiling .eyeright {
+    width: 34px;
+    height: 18px;
+    margin-left: 119px;
+    margin-top: -20px;
+    background: transparent;
+    border-radius: 50% 50% 0 0;
+    border-top: 6px solid #272323;
+  }
+
+  .profile.is-smiling .eyehlleft,
+  .profile.is-smiling .eyehlright {
+    opacity: 0;
+  }
+
+  .profile.is-smiling .nose1 {
+    margin-top: -7px;
+  }
+
+  .profile.is-smiling .mouth1 {
+    width: 28px;
+    height: 22px;
+    margin-left: 63px;
+    margin-top: 15px;
+    border-radius: 0 0 0 100%;
+  }
+
+  .profile.is-smiling .mouth2 {
+    width: 28px;
+    height: 22px;
+    margin-left: 90px;
+    margin-top: -22px;
+    border-radius: 0 0 100% 0;
+  }
+
+  .profile.is-look-left {
+    transform: scale(0.9) rotate(-1.5deg);
+  }
+
+  .profile.is-look-right {
+    transform: scale(0.9) rotate(1.5deg);
+  }
+
+  .profile.is-look-down {
+    transform: scale(0.9) translateY(5px);
+  }
+
+  :global(.face-confetti) {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  :global(.confetti-piece) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: inline-block;
+    font-size: 32px;
+    line-height: 1;
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.5);
+    transform-origin: center;
+    will-change: transform, opacity;
+    animation-name: face-firework;
+    animation-duration: 950ms;
+    animation-timing-function: cubic-bezier(0.16, 0.78, 0.26, 1);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes face-firework {
+    0% {
+      opacity: 0;
+      transform: translate3d(-50%, -50%, 0) scale(0.35) rotate(0deg);
+    }
+
+    12% {
+      opacity: 1;
+    }
+
+    55% {
+      opacity: 1;
+      transform:
+        translate3d(
+          calc(-50% + var(--burst-x)),
+          calc(-50% + var(--burst-y)),
+          0
+        )
+        scale(1.12)
+        rotate(var(--rotate-mid));
+    }
+
+    100% {
+      opacity: 0;
+      transform:
+        translate3d(
+          calc(-50% + var(--burst-x-final)),
+          calc(-50% + var(--burst-y-final)),
+          0
+        )
+        scale(0.9)
+        rotate(var(--rotate-final));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .profile.is-look-left {
+      transform: scale(0.95) rotate(-1.5deg);
+    }
+
+    .profile.is-look-right {
+      transform: scale(0.95) rotate(1.5deg);
+    }
+
+    .profile.is-look-down {
+      transform: scale(0.95) translateY(5px);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .profile.is-look-left {
+      transform: scale(1) rotate(-1.5deg);
+    }
+
+    .profile.is-look-right {
+      transform: scale(1) rotate(1.5deg);
+    }
+
+    .profile.is-look-down {
+      transform: scale(1) translateY(5px);
+    }
+  }
+</style>
+
+<script is:inline>
+  const stage = document.querySelector("[data-profile-face]");
+  const profile = stage?.querySelector(".profile");
+  const confettiLayer = stage?.querySelector(".face-confetti");
+
+  if (stage && profile) {
+    const eyes = profile.querySelectorAll(".eye");
+    const faces = profile.querySelectorAll(".face");
+
+    let animationFrame = null;
+    let latestEvent = null;
+    let activeTrigger = null;
+
+    const moveFace = () => {
+      if (!latestEvent || profile.classList.contains("is-smiling")) {
+        animationFrame = null;
+        return;
+      }
+
+      const event = latestEvent;
+
+      const eyeX = `${(event.clientX * 100) / window.innerWidth / 70}%`;
+      const eyeY = `${(event.clientY * 100) / window.innerHeight / 36}%`;
+
+      eyes.forEach((part) => {
+        part.style.left = eyeX;
+        part.style.top = eyeY;
+        part.style.transform = `translate(-${eyeX}, ${eyeY})`;
+      });
+
+      const faceX = `${(event.clientX * 100) / window.innerWidth / 140}%`;
+      const faceY = `${(event.clientY * 100) / window.innerHeight / 60}%`;
+
+      faces.forEach((part) => {
+        part.style.left = faceX;
+        part.style.top = faceY;
+        part.style.transform = `translate(-${faceX}, ${faceY})`;
+      });
+
+      animationFrame = null;
+    };
+
+    window.addEventListener("pointermove", (event) => {
+      latestEvent = event;
+
+      if (!animationFrame) {
+        animationFrame = requestAnimationFrame(moveFace);
+      }
+    });
+
+    const resetFace = () => {
+      profile.classList.remove("is-smiling", "is-look-left", "is-look-right", "is-look-down");
+
+      eyes.forEach((part) => {
+        part.style.left = "";
+        part.style.top = "";
+        part.style.transform = "";
+      });
+
+      faces.forEach((part) => {
+        part.style.left = "";
+        part.style.top = "";
+        part.style.transform = "";
+      });
+    };
+
+    const getClickableTrigger = (target) => {
+      return target.closest(
+        "[data-face-expression], a, button, [role='button'], input[type='button'], input[type='submit']"
+      );
+    };
+
+    const launchConfetti = () => {
+      if (!confettiLayer) return;
+
+      confettiLayer.innerHTML = "";
+
+      const items = ["🌟", "💻", "🎨", "💡", "📐", "✏️"];
+
+      const bursts = [
+        {
+          burstX: "-260px",
+          burstY: "-210px",
+          burstXFinal: "-310px",
+          burstYFinal: "-250px",
+          rotateMid: "-28deg",
+          rotateFinal: "80deg",
+        },
+        {
+          burstX: "-150px",
+          burstY: "-295px",
+          burstXFinal: "-180px",
+          burstYFinal: "-345px",
+          rotateMid: "20deg",
+          rotateFinal: "110deg",
+        },
+        {
+          burstX: "-20px",
+          burstY: "-330px",
+          burstXFinal: "-20px",
+          burstYFinal: "-390px",
+          rotateMid: "-12deg",
+          rotateFinal: "95deg",
+        },
+        {
+          burstX: "150px",
+          burstY: "-295px",
+          burstXFinal: "180px",
+          burstYFinal: "-345px",
+          rotateMid: "28deg",
+          rotateFinal: "-110deg",
+        },
+        {
+          burstX: "260px",
+          burstY: "-210px",
+          burstXFinal: "310px",
+          burstYFinal: "-250px",
+          rotateMid: "-20deg",
+          rotateFinal: "95deg",
+        },
+        {
+          burstX: "40px",
+          burstY: "-260px",
+          burstXFinal: "70px",
+          burstYFinal: "-315px",
+          rotateMid: "18deg",
+          rotateFinal: "-90deg",
+        },
+      ];
+
+      bursts.forEach((burst, index) => {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.textContent = items[index % items.length];
+
+        piece.style.setProperty("--burst-x", burst.burstX);
+        piece.style.setProperty("--burst-y", burst.burstY);
+        piece.style.setProperty("--burst-x-final", burst.burstXFinal);
+        piece.style.setProperty("--burst-y-final", burst.burstYFinal);
+        piece.style.setProperty("--rotate-mid", burst.rotateMid);
+        piece.style.setProperty("--rotate-final", burst.rotateFinal);
+        piece.style.animationDelay = `${index * 45}ms`;
+
+        confettiLayer.appendChild(piece);
+      });
+
+      window.setTimeout(() => {
+        confettiLayer.innerHTML = "";
+      }, 1100);
+    };
+
+    document.addEventListener("pointerover", (event) => {
+      const trigger = getClickableTrigger(event.target);
+      if (!trigger) return;
+
+      if (activeTrigger === trigger) return;
+      activeTrigger = trigger;
+
+      resetFace();
+
+      const expression = trigger.getAttribute("data-face-expression");
+
+      profile.classList.add("is-smiling");
+
+      if (expression === "left") {
+        profile.classList.add("is-look-left");
+      } else if (expression === "right") {
+        profile.classList.add("is-look-right");
+      } else if (expression === "down") {
+        profile.classList.add("is-look-down");
+      }
+
+      launchConfetti();
+    });
+
+    document.addEventListener("pointerout", (event) => {
+      const trigger = getClickableTrigger(event.target);
+      if (!trigger) return;
+
+      if (trigger.contains(event.relatedTarget)) return;
+
+      if (activeTrigger === trigger) {
+        activeTrigger = null;
+        resetFace();
+      }
+    });
+  }
+</script>
