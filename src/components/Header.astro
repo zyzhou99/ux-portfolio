@@ -1,23 +1,22 @@
 ---
-const pathname = Astro.url.pathname;
+import { withBase } from "../utils/paths";
 
 const navItems = [
-  { label: "Work", href: "#work" },
-  { label: "Playground", href: "#playground" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: withBase("work/") },
+  // { label: "Playground", href: withBase("playground/") },
+  { label: "About", href: withBase("about/") },
+  { label: "Contact", href: withBase("#contact") },
 ];
 ---
 
 <header class="sticky top-0 z-50 border-b border-[#eadfce]/80 bg-[#fffaf3]/85 backdrop-blur-xl">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8 lg:px-12">
-    <a href="/" class="group inline-flex items-center gap-3">
-      <span class="flex h-9 w-9 items-center justify-center rounded-full border border-[#1f1f1f] text-sm font-semibold transition-transform duration-300 group-hover:rotate-[-8deg]">
-        ZZ
-      </span>
-      <span class="hidden text-sm font-medium tracking-wide text-[#1f1f1f] sm:inline">
-        Ziyan Zhou
-      </span>
+    <a href={withBase("")} class="group inline-flex items-center gap-3">
+      <img
+        src={withBase("images/logo-zzy.png")}
+        alt="Ziyan Zhou logo"
+        class="h-10 w-auto transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:scale-105"
+      />
     </a>
 
     <nav class="hidden items-center gap-8 md:flex">
@@ -33,14 +32,14 @@ const navItems = [
 
     <div class="flex items-center gap-3">
       <a
-        href="/zh/"
+        href={withBase("zh/")}
         class="rounded-full border border-[#1f1f1f]/15 px-4 py-2 text-sm font-medium text-[#1f1f1f] transition-all hover:border-[#1f1f1f] hover:bg-[#1f1f1f] hover:text-white"
       >
         中文
       </a>
 
       <a
-        href="#contact"
+        href={withBase("#contact")}
         class="hidden rounded-full bg-[#1f1f1f] px-4 py-2 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#d66f3f] sm:inline-flex"
       >
         Let’s Talk

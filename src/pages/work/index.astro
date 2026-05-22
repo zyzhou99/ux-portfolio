@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { withBase } from "../../utils/paths";
+
+const base = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const allProjects = [
+  {
+    title: "DRSL",
+    type: "UX Research · Product Design",
+    description:
+      "A digital health design project exploring accessibility, service clarity, and user-centered medical experiences.",
+    tags: ["UX Research", "UI Design", "Healthcare"],
+    href: withBase("work/drsl/"),
+  },
+  {
+    title: "SmartMeds",
+    type: "Mobile App Design",
+    description:
+      "A medication management app designed to help users build safer, clearer, and more consistent daily routines.",
+    tags: ["Mobile UX", "Interaction Design", "Accessibility"],
+    href: withBase("work/smartmeds/"),
+  },
+  {
+    title: "WEDO",
+    type: "Service Design · UI/UX",
+    description:
+      "A collaborative platform concept focused on clearer communication, task flow, and user engagement.",
+    tags: ["Service Design", "Product Thinking", "Prototype"],
+    href: withBase("work/wedo/"),
+  },
+  {
+    title: "Bentley",
+    type: "Experience Design",
+    description:
+      "A design exploration around premium digital interaction, brand tone, and user experience.",
+    tags: ["Brand UX", "Visual Design", "Case Study"],
+    href: withBase("work/bentley/"),
+  },
+];
+---
+
+<BaseLayout
+  title="Work | Ziyan Zhou"
+  description="Selected UI/UX, product design, and web experience projects by Ziyan Zhou."
+>
+  <Header />
+
+  <main class="px-5 py-16 md:px-8 md:py-24 lg:px-12">
+    <section class="mx-auto max-w-7xl">
+      <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+        Work
+      </p>
+
+      <h1 class="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#1f1f1f] md:text-7xl">
+        Selected projects and case studies.
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-[#5f5a54]">
+        A collection of UX, UI, product, and web experience projects.
+      </p>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-2">
+        {allProjects.map((project, index) => (
+          <ProjectCard
+            title={project.title}
+            type={project.type}
+            description={project.description}
+            tags={project.tags}
+            href={project.href}
+            index={index}
+          />
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

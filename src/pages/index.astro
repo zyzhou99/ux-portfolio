@@ -3,54 +3,82 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ProfileFace from "../components/ProfileFace.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import PlaygroundCarousel from "../components/PlaygroundCarousel.astro";
+import ComingSoonToast from "../components/ComingSoonToast.astro";
+import { withBase } from "../utils/paths";
 
-const projects = [
-  {
-    title: "DRSL",
-    type: "UX Research · Product Design",
+const featuredProjects = [
+	{
+    title: "Happy Go",
+    type: "Mini App Design · UI/UX",
     description:
-      "A design project exploring digital health, accessibility, and user-centered service experiences.",
-    tags: ["UX Research", "UI Design", "Healthcare"],
+      "A launched Douyin mini app for concert ticket discovery and purchase, designed to support browsing, ticket selection, and a smoother mobile checkout experience.",
+    tags: ["Mobile UX", "Ticketing", "Launched Product"],
+    href: withBase("work/happy-go/"),
+    image: withBase("images/projects/happygo-cover.jpg"),
+  },
+  {
+    title: "VIP Service Hub",
+    type: "Service Platform · UI/UX · Demo Development",
+    description:
+      "An omnichannel customer service dashboard for luxury hospitality, designed to help agents manage VIP requests across multiple communication channels.",
+    tags: ["Service Design", "Dashboard UX", "Front-End Demo"],
+    href: withBase("work/vip-service-hub/"),
+    image: withBase("images/projects/vip-service-hub-cover.jpg"),
+  },
+  {
+    title: "Detroit River Story Web App",
+    type: "Web App · Thesis Project · UX + Development",
+    description:
+      "A mobile-accessible web experience that connects physical spaces along the Detroit Riverfront with digital storytelling, enabling community participation through multimedia engagement.",
+    tags: ["Community UX", "Web App", "Storytelling"],
+    href: withBase("work/drsl/"),
+    image: withBase("images/projects/drsl-cover.jpg"),
   },
   {
     title: "SmartMeds",
-    type: "Mobile App Design",
-    description:
-      "A medication management experience designed to help users build safer and clearer daily routines.",
-    tags: ["Mobile UX", "Interaction Design", "Accessibility"],
-  },
-  {
-    title: "WEDO",
-    type: "Service Design · UI/UX",
-    description:
-      "A collaborative platform concept focused on clearer communication, task flow, and user engagement.",
-    tags: ["Service Design", "Product Thinking", "Prototype"],
-  },
-  {
-    title: "Bentley",
-    type: "Experience Design",
-    description:
-      "A design exploration around premium user experience, brand tone, and digital interaction.",
-    tags: ["Brand UX", "Visual Design", "Case Study"],
+    type: "UX Research · Mobile App Design",
+  	description:
+    	"A connected medication management app with a Bluetooth pillbox, designed to help patients and caregivers track schedules, medication intake, and side effects.",
+  	tags: ["UX Research", "Healthcare UX", "Prototype"],
+    href: withBase("work/smartmeds/"),
+    image: withBase("images/projects/smartmeds-cover.jpg"),
   },
 ];
 
 const playgroundImages = [
   {
-    src: "/images/playground/play-1.jpg",
+    src: "public/images/playground/play-1.jpg",
     alt: "Playground preview image 1",
   },
   {
-    src: "/images/playground/play-2.jpg",
+    src: "public/images/playground/play-2.jpg",
     alt: "Playground preview image 2",
   },
   {
-    src: "/images/playground/play-3.jpg",
+    src: "public/images/playground/play-3.jpg",
     alt: "Playground preview image 3",
   },
   {
-    src: "/images/playground/play-4.jpg",
+    src: "public/images/playground/play-4.jpg",
     alt: "Playground preview image 4",
+  },
+	{
+    src: withBase("images/playground/play-5.jpg"),
+    alt: "Playground preview image 5",
+  },
+  {
+    src: withBase("images/playground/play-6.jpg"),
+    alt: "Playground preview image 6",
+  },
+  {
+    src: withBase("images/playground/play-7.jpg"),
+    alt: "Playground preview image 7",
+  },
+  {
+    src: withBase("images/playground/play-8.jpg"),
+    alt: "Playground preview image 8",
   },
 ];
 ---
@@ -143,65 +171,48 @@ const playgroundImages = [
 			</div>
 		</section>
 
-    <section id="work" class="px-5 py-20 md:px-8 lg:px-12">
-      <div class="mx-auto max-w-7xl">
-        <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div>
-            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
-              Selected Work
-            </p>
-            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
-              UX Projects
-            </h2>
-          </div>
+    <section id="work" class="px-5 py-18 md:px-8 md:py-20 lg:px-12">
+			<div class="mx-auto max-w-7xl">
+				<div class="mb-12 grid gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+					<div>
+						<p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+							Selected Work
+						</p>
 
-          <p class="max-w-md text-base leading-7 text-[#5f5a54]">
-            A selection of projects across product design, healthcare, service experience, and digital interaction.
-          </p>
-        </div>
+						<h2 class="max-w-3xl text-4xl font-semibold leading-[0.95] tracking-[-0.05em] text-[#1f1f1f] md:text-6xl">
+							Featured case studies.
+						</h2>
+					</div>
 
-        <div class="grid gap-6 md:grid-cols-2">
-          {projects.map((project, index) => (
-            <article class="group overflow-hidden rounded-[2rem] border border-[#1f1f1f]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#d66f3f]/10">
-              <div class="flex min-h-[260px] items-end bg-gradient-to-br from-[#f7d8c1] via-[#f7efe1] to-[#e9d7b8] p-6">
-                <div class="flex h-24 w-24 items-center justify-center rounded-full bg-white/70 text-2xl font-semibold text-[#1f1f1f] shadow-sm transition-transform duration-300 group-hover:scale-105">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-              </div>
+					<div class="md:justify-self-end">
+						<p class="max-w-xl text-base leading-7 text-[#5f5a54]">
+							A focused selection of projects that show my process across research, product thinking, interface design, and implementation.
+						</p>
 
-              <div class="p-6 md:p-8">
-                <p class="mb-3 text-sm font-medium text-[#d66f3f]">
-                  {project.type}
-                </p>
+						<a
+							href={withBase("work/")}
+							class="mt-6 inline-flex items-center justify-center rounded-full border border-[#1f1f1f]/20 px-5 py-2.5 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:border-[#1f1f1f] hover:bg-[#1f1f1f] hover:text-white"
+						>
+							View All Work
+						</a>
+					</div>
+				</div>
 
-                <h3 class="text-3xl font-semibold tracking-[-0.03em]">
-                  {project.title}
-                </h3>
-
-                <p class="mt-4 leading-7 text-[#5f5a54]">
-                  {project.description}
-                </p>
-
-                <div class="mt-6 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span class="rounded-full border border-[#1f1f1f]/10 px-3 py-1 text-xs text-[#5f5a54]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  href="#"
-                  class="mt-8 inline-flex text-sm font-semibold text-[#1f1f1f] transition-colors hover:text-[#d66f3f]"
-                >
-                  View case study →
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+				<div class="grid gap-6 md:grid-cols-2">
+					{featuredProjects.map((project, index) => (
+						<ProjectCard
+							title={project.title}
+							type={project.type}
+							description={project.description}
+							tags={project.tags}
+							href={project.href}
+							image={project.image}
+							index={index}
+						/>
+					))}
+				</div>
+			</div>
+		</section>
 
     <section id="playground" class="bg-[#f7efe1] px-5 py-20 md:px-8 lg:px-12">
 			<div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
@@ -218,27 +229,18 @@ const playgroundImages = [
 						A small collection of visuals, side projects, and things I enjoy making.
 					</p>
 
-					<a
-						href="#playground"
+					<button
+						type="button"
+						data-coming-soon-trigger
+						data-face-expression="left"
 						class="mt-8 inline-flex items-center justify-center rounded-full border border-[#1f1f1f]/20 px-6 py-3 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:border-[#1f1f1f] hover:bg-white"
 					>
 						See More
-					</a>
+					</button>
 				</div>
 
-				<div class="grid gap-4 sm:grid-cols-2">
-					{playgroundImages.map((item) => (
-						<div class="overflow-hidden rounded-[1.5rem] border border-[#1f1f1f]/10 bg-white/70 shadow-sm">
-							<div class="aspect-[16/9] w-full overflow-hidden">
-								<img
-									src={item.src}
-									alt={item.alt}
-									class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-									loading="lazy"
-								/>
-							</div>
-						</div>
-					))}
+				<div class="min-w-0">
+					<PlaygroundCarousel images={playgroundImages} />
 				</div>
 			</div>
 		</section>
@@ -274,6 +276,8 @@ const playgroundImages = [
         </div>
       </div>
     </section>
+
+		<ComingSoonToast message="Playground page is coming soon ✨" />
   </main>
 
   <Footer />

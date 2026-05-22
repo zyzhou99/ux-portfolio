@@ -1,0 +1,39 @@
+---
+interface Props {
+  message?: string;
+}
+
+const { message = "This page is coming soon ✨" } = Astro.props;
+---
+
+<div
+  data-coming-soon-toast
+  class="pointer-events-none fixed left-1/2 top-24 z-[999] -translate-x-1/2 translate-y-[-12px] rounded-full border border-[#1f1f1f]/10 bg-[#1f1f1f] px-5 py-3 text-sm font-semibold text-white opacity-0 shadow-xl transition-all duration-300"
+>
+  {message}
+</div>
+
+<script is:inline>
+  const comingSoonTriggers = document.querySelectorAll("[data-coming-soon-trigger]");
+  const comingSoonToast = document.querySelector("[data-coming-soon-toast]");
+
+  let toastTimer;
+
+  comingSoonTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (!comingSoonToast) return;
+
+      window.clearTimeout(toastTimer);
+
+      comingSoonToast.classList.remove("opacity-0", "translate-y-[-12px]");
+      comingSoonToast.classList.add("opacity-100", "translate-y-0");
+
+      toastTimer = window.setTimeout(() => {
+        comingSoonToast.classList.remove("opacity-100", "translate-y-0");
+        comingSoonToast.classList.add("opacity-0", "translate-y-[-12px]");
+      }, 1800);
+    });
+  });
+</script>
