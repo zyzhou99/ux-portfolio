@@ -1,0 +1,881 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import PageReveal from "../../../components/PageReveal.astro";
+import CaseStudyNav from "../../../components/CaseStudyNav.astro";
+import { withBase } from "../../../utils/paths";
+
+const quickFacts = [
+  { label: "Timeline", value: "Spring 2024 · 4 months" },
+  { label: "Role", value: "UX Designer · Developer · Scrum Master" },
+  { label: "Team", value: "6 students" },
+  { label: "Client", value: "Detroit River Story Lab (DRSL)" },
+];
+
+const caseNavItems = [
+  { label: "Challenge", href: "#challenge" },
+  { label: "Solution", href: "#solution" },
+  { label: "Role", href: "#role" },
+  { label: "Flows", href: "#flows" },
+  { label: "Handoff", href: "#starting-point" },
+  { label: "Iterations", href: "#decisions" },
+  { label: "Demo", href: "#demo" },
+  { label: "Reflection", href: "#reflection" },
+];
+
+const tools = [
+  "React",
+  "Redux Toolkit",
+  "Firebase",
+  "Google Maps API",
+  "Jira",
+  "Figma",
+];
+
+const featureCards = [
+  {
+    title: "Place-Based Discovery",
+    icon: "map",
+    text: "Stories are organized around Detroit Riverfront locations, helping users connect memories and histories to physical places.",
+  },
+  {
+    title: "On-Site QR Access",
+    icon: "qr",
+    text: "QR codes placed along the riverfront allow visitors to open location-specific content directly from their phones.",
+  },
+  {
+    title: "Multimedia Contribution",
+    icon: "media",
+    text: "Community members can share stories through text, images, video, and audio, supporting different ways of remembering and storytelling.",
+  },
+  {
+    title: "Moderated Publishing",
+    icon: "check",
+    text: "Admin review tools help the organization approve, reject, and manage submissions before they become public.",
+  },
+];
+
+const flows = [
+  {
+    title: "Visitor Discovery",
+    label: "Public User",
+    steps: [
+      "Scan QR code or open the map",
+      "Choose a riverfront site",
+      "Browse related stories",
+      "Read, save, or continue exploring",
+    ],
+  },
+  {
+    title: "Community Contribution",
+    label: "Story Contributor",
+    steps: [
+      "Select location and tags",
+      "Add text, images, video, or audio",
+      "Review selected story details",
+      "Submit for admin approval",
+    ],
+  },
+  {
+    title: "Content Moderation",
+    label: "Admin User",
+    steps: [
+      "Review pending submissions",
+      "Check story content and metadata",
+      "Approve, reject, or return feedback",
+      "Manage published content",
+    ],
+  },
+];
+
+const designIterations = [
+  {
+    title: "Clarifying profile editing",
+    quote:
+      "The ‘···’ icon did not clearly suggest profile editing, and the @username placement looked clickable.",
+    issue:
+      "The profile page had weak editing affordance. Users might not understand where to edit their profile, and the username placement created unnecessary visual confusion.",
+    adjustment:
+      "We replaced the ‘···’ icon with a pen icon, placed it next to the display name, moved the @username below the name, and removed the low-priority connection panel.",
+    beforeImage: withBase("images/projects/drsl/profile-before.jpg"),
+    afterImage: withBase("images/projects/drsl/profile-after.jpg"),
+    why:
+      "This made profile editing more discoverable and reduced misleading visual emphasis on non-clickable information.",
+  },
+  {
+    title: "Making story submission more transparent",
+    quote:
+      "Users could not clearly tell which location or tags they had selected before submitting a story.",
+    issue:
+      "The create-story flow did not show selected locations and tags clearly enough, which could make users feel uncertain before publishing.",
+    adjustment:
+      "We added visible selected-location and selected-tag states, and expanded story submission to support audio input in addition to text and images.",
+    beforeImage: withBase("images/projects/drsl/create-story-before.jpg"),
+    afterImage: withBase("images/projects/drsl/create-story-after.jpg"),
+    why:
+      "This improved confidence during submission and made the platform more inclusive for oral storytelling and longer personal memories.",
+  },
+  {
+    title: "Improving story discovery through filters",
+    quote:
+      "The product needed a more detailed search system for users to find content they were interested in.",
+    issue:
+      "Users had limited ways to search and browse stories, which made discovery overly passive and less useful as content volume grew.",
+    adjustment:
+      "We designed a filter system that allowed users to search by location, tag, author, date, and keywords, with editable search tags on the results page.",
+    beforeImage: withBase("images/projects/drsl/filter1.jpg"),
+    afterImage: withBase("images/projects/drsl/filter2.jpg"),
+    why:
+      "This helped users move from browsing randomly to finding relevant stories based on their interests and context.",
+  },
+  {
+    title: "Creating an admin moderation workflow",
+    quote:
+      "The client needed a way to manage content quality before community submissions became public.",
+    issue:
+      "Without moderation, public submissions could not be safely reviewed, approved, rejected, or returned with feedback.",
+    adjustment:
+      "We created an admin portal where organization admins could review submissions, approve or reject content, sort posts by status, and communicate feedback to users.",
+    featureImages: [
+      withBase("images/projects/drsl/admin1.png"),
+      withBase("images/projects/drsl/admin2.png"),
+      withBase("images/projects/drsl/admin3.png"),
+      withBase("images/projects/drsl/admin4.png"),
+    ],
+    why:
+      "This turned the app from a simple posting tool into a more sustainable community content platform.",
+  },
+];
+
+const mobileDemos = [
+  {
+    title: "Account & Profile",
+    text: "Users can create an account, log in, and edit profile information.",
+    image: withBase("images/projects/drsl/drsl-demo-account.gif"),
+  },
+  {
+    title: "Explore Stories",
+    text: "Users can browse stories, save posts, and view content connected to riverfront locations.",
+    image: withBase("images/projects/drsl/drsl-demo-explore.gif"),
+  },
+  {
+    title: "Submit a Story",
+    text: "Users can contribute stories with text, images, and audio recording.",
+    image: withBase("images/projects/drsl/drsl-demo-submit.gif"),
+  },
+];
+
+const desktopDemo = {
+  title: "Admin Moderation",
+  text: "Organization admins can review, approve, reject, and manage community-submitted content through a desktop-first moderation portal.",
+  image: withBase("images/projects/drsl/drsl-demo-admin.gif"),
+};
+
+const reflectionTakeaways = [
+  {
+    title: "Digital products can extend physical places",
+    text: "The project helped me think beyond the riverfront as a physical site and explore how digital interaction can support memory, place, and community participation.",
+  },
+  {
+    title: "Implementation reveals UX gaps",
+    text: "Turning the design into a working beta surfaced edge cases and missing flows that were not obvious in static screens.",
+  },
+  {
+    title: "Small interaction details can shape trust",
+    text: "Clearer submission states, better editing affordances, and moderation workflows helped the product feel more understandable and safer to use.",
+  },
+];
+
+const improvements = [
+  "Improve accessibility and mobile responsiveness across all flows.",
+  "Simplify the visual hierarchy of story cards and story detail pages.",
+  "Run more usability testing with actual riverfront visitors.",
+  "Strengthen onboarding for first-time contributors.",
+  "Optimize search performance and map loading.",
+];
+---
+
+<BaseLayout
+  title="River Stories | Ziyan Zhou"
+  description="A place-based community storytelling web app for Detroit River communities by Ziyan Zhou."
+>
+  <Header />
+
+  <main>
+    {/* HERO SECTION - Reorganized for better reading flow while keeping the blobs */}
+    <section class="relative overflow-hidden px-5 py-12 md:px-8 md:py-18 lg:px-12">
+      <div class="absolute left-[-10rem] top-10 h-80 w-80 rounded-full bg-[#f6c8a7]/40 blur-3xl"></div>
+      <div class="absolute bottom-0 right-[-12rem] h-96 w-96 rounded-full bg-[#f1d9a7]/50 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl">
+        <a
+          href={withBase("work/")}
+          class="mb-8 inline-flex text-sm font-semibold text-[#5f5a54] transition-colors hover:text-[#d66f3f]"
+        >
+          ← Back to Work
+        </a>
+
+        <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div data-reveal>
+            <p class="mb-5 inline-flex rounded-full border border-[#1f1f1f]/10 bg-white/60 px-4 py-2 text-sm font-medium text-[#5f4a3d] shadow-sm">
+              Web App · Community UX · Storytelling
+            </p>
+
+            <h1 class="text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-[#1f1f1f] md:text-7xl lg:text-8xl">
+              River Stories
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-xl font-medium leading-8 text-[#3d3833] md:text-2xl">
+              A place-based storytelling web app for Detroit River communities.
+            </p>
+
+            <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54] md:text-lg">
+              A mobile-accessible web experience that connects physical spaces along the Detroit Riverfront with digital storytelling, enabling community participation through multimedia engagement.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-2">
+              {tools.map((tool) => (
+                <span class="rounded-full border border-[#1f1f1f]/10 bg-white/70 px-3 py-1.5 text-xs font-medium text-[#5f5a54]">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div
+            data-reveal
+            data-reveal-delay="1"
+            class="overflow-hidden rounded-[2.5rem] border border-[#1f1f1f]/10 bg-white/70 p-3 shadow-2xl shadow-[#d66f3f]/10"
+          >
+            <div class="aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#f7efe1]">
+              <img
+                src={withBase("images/projects/drsl-cover.jpg")}
+                alt="River Stories web app cover"
+                class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-reveal
+          data-reveal-delay="2"
+          class="mt-12 grid gap-4 rounded-[2rem] border border-[#1f1f1f]/10 bg-white/70 p-5 shadow-sm backdrop-blur md:grid-cols-4"
+        >
+          {quickFacts.map((fact) => (
+            <div class="border-[#1f1f1f]/10 md:border-r md:last:border-r-0 md:px-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#d66f3f]">
+                {fact.label}
+              </p>
+
+              <p class="mt-2 text-sm font-semibold leading-6 text-[#1f1f1f]">
+                {fact.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CaseStudyNav items={caseNavItems} />
+
+    {/* CHALLENGE - Emphasizing the UX Problem */}
+    <section id="challenge" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-4xl text-center">
+        <p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+          The Challenge
+        </p>
+        <h2 class="text-3xl font-medium leading-relaxed text-[#4f4a45] md:text-4xl">
+          "How might we help community members discover, preserve, and share personal or historical stories connected to places along the Detroit River?"
+        </h2>
+        
+        <div class="mt-12 grid gap-4 text-left sm:grid-cols-3">
+            {["Client-defined requirements", "4-month development timeline (Agile Development)", "Public contributors + admin moderation"].map((constraint) => (
+              <div class="rounded-[1.5rem] bg-[#fffaf3] p-5 text-center text-sm font-medium leading-6 ring-1 ring-[#1f1f1f]/10 shadow-sm">
+                {constraint}
+              </div>
+            ))}
+        </div>
+      </div>
+    </section>
+
+    {/* SOLUTION - Grid Layout */}
+    <section id="solution" class="scroll-mt-32 bg-[#f7efe1] px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[1fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Solution
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              A storytelling system connecting place, memory, and participation.
+            </h2>
+          </div>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          {featureCards.map((feature, index) => (
+            <article class="group rounded-[2rem] border border-[#1f1f1f]/10 bg-white/75 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-7">
+              <div class="mb-8 flex h-12 w-12 items-center justify-center rounded-full bg-[#fffaf3] text-[#d66f3f] ring-1 ring-[#1f1f1f]/10 transition-transform duration-300 group-hover:scale-110">
+                {feature.icon === "map" && (
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z" />
+                    <path d="M9 3v15" />
+                    <path d="M15 6v15" />
+                  </svg>
+                )}
+
+                {feature.icon === "qr" && (
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                    <path d="M14 14h2v2h-2z" />
+                    <path d="M18 14h3" />
+                    <path d="M14 18h3" />
+                    <path d="M19 18h2v3" />
+                  </svg>
+                )}
+
+                {feature.icon === "media" && (
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M8 13l2.5-2.5L14 14l2-2 3 3" />
+                    <circle cx="8" cy="9" r="1" />
+                  </svg>
+                )}
+
+                {feature.icon === "check" && (
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12a9 9 0 1 1-6.2-8.56" />
+                  </svg>
+                )}
+              </div>
+
+              <h3 class="text-xl font-semibold tracking-[-0.03em] text-[#1f1f1f]">
+                {feature.title}
+              </h3>
+
+              <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                {feature.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ROLE & TECH - Consolidated */}
+    <section id="role" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div data-reveal class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_1fr]">
+        <div class="rounded-[2.5rem] border border-[#1f1f1f]/10 bg-[#1f1f1f] p-8 text-white shadow-xl md:p-12">
+          <p class="text-sm uppercase tracking-[0.2em] text-[#f6c8a7] mb-4">My Role</p>
+          <h3 class="text-3xl font-semibold leading-tight">UX Designer · Developer · Scrum Master</h3>
+          <p class="mt-6 text-white/70 leading-relaxed">
+            I helped translate client requirements into user flows, refine key mobile interactions, implement front-end features, and coordinate sprint planning.
+          </p>
+        </div>
+        
+        <div class="rounded-[2.5rem] border border-[#1f1f1f]/10 bg-white p-8 shadow-sm md:p-12">
+          <p class="text-sm uppercase tracking-[0.2em] text-[#d66f3f] mb-4">Tech Stack</p>
+          <h3 class="text-3xl font-semibold leading-tight">Built as a working beta.</h3>
+          <div class="mt-8 flex flex-wrap gap-3">
+            {tools.map((tool) => (
+              <span class="rounded-full border border-[#1f1f1f]/10 bg-[#fffaf3] px-4 py-2 text-sm font-medium text-[#5f5a54]">
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* USER FLOWS - Kept dark mode, refined alignment */}
+    <section id="flows" class="scroll-mt-32 bg-[#1f1f1f] px-5 py-16 text-white md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+              User Flows
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Three journeys across the same ecosystem.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-8 text-white/65 lg:justify-self-end">
+            The product needed to support different users at different moments: visitors discovering stories, community members contributing memories, and admins reviewing content.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          {flows.map((flow, flowIndex) => (
+            <article class="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm md:p-8">
+              <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#f6c8a7]">
+                {flow.label}
+              </p>
+
+              <h3 class="text-2xl font-semibold tracking-[-0.03em]">
+                {flow.title}
+              </h3>
+
+              <ol class="mt-8 space-y-5">
+                {flow.steps.map((step, index) => (
+                  <li class="flex gap-4 text-sm leading-6 text-white/75">
+                    <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white ring-1 ring-white/10">
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-[0.45fr_0.55fr] lg:items-center">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+              Planning Artifact
+            </p>
+
+            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-white md:text-3xl">
+              Full user journey map
+            </h3>
+
+            <p class="mt-4 text-sm leading-7 text-white/65">
+              To align the team around the product logic, we mapped the end-to-end journeys across public visitors, story contributors, and admin users. The full map helped us identify key states such as QR entry, story submission, approval status, bookmarking, and moderation.
+            </p>
+
+            <a
+              href={withBase("images/projects/drsl/drsl-flow.jpg")}
+              target="_blank"
+              rel="noreferrer"
+              class="mt-6 inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:bg-[#f6c8a7]"
+            >
+              Open full journey map
+            </a>
+          </div>
+
+          <a
+            href={withBase("images/projects/drsl/drsl-flow.jpg")}
+            target="_blank"
+            rel="noreferrer"
+            class="group block overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] p-3"
+          >
+            <div class="aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-white">
+              <img
+                src={withBase("images/projects/drsl/drsl-flow.jpg")}
+                alt="Full River Stories user journey map"
+                class="h-full w-full object-cover object-left-top transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="starting-point" class="scroll-mt-32 bg-[#f7efe1] px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl pb-10">
+        <div class="grid gap-10 lg:grid-cols-[0.55fr_0.45fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Starting Point
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Existing design, real product constraints.
+            </h2>
+          </div>
+
+          <p class="text-base leading-8 text-[#5f5a54] md:text-lg">
+            The project began with an inherited Figma direction. Our contribution was turning that direction into a working beta while refining interactions and adding missing functionality during development.
+          </p>
+        </div>
+
+        <figure class="mt-12 overflow-hidden border-y border-[#1f1f1f]/10 py-6">
+          <div class="aspect-[16/7] overflow-hidden rounded-[2rem]">
+            <img
+              src={withBase("images/projects/drsl/design-handoff.png")}
+              alt="Initial design handoff screens for River Stories"
+              class="h-full w-full object-contain object-top"
+              loading="lazy"
+            />
+          </div>
+
+          <figcaption class="mt-4 max-w-3xl text-sm leading-6 text-[#5f5a54]">
+            Initial design direction inherited from a previous project phase. The following iteration section focuses on the adjustments and features our team refined during implementation.
+          </figcaption>
+        </figure>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          {["Inherited design direction", "Built working beta", "Improved key flows", "Added missing features"].map((item) => (
+            <span class="rounded-full bg-[#fffaf3] px-4 py-2 text-sm font-semibold text-[#5f5a54] ring-1 ring-[#1f1f1f]/10">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* DESIGN DECISIONS - High Immersion Sticky Layout */}
+     <section id="decisions" class="scroll-mt-32 bg-white px-5 pt-10 pb-16 md:px-8 md:pt-20 md:pb-24 lg:px-12">      
+      <div class="mx-auto max-w-7xl">
+        <div data-reveal class="mb-16 max-w-4xl">
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            Testing Insights & Design Iterations
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            Turning feedback into clearer interactions.
+          </h2>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54]">
+            We refined key flows based on testing and client feedback, focusing on contribution clarity, content discovery, and moderation.
+          </p>
+        </div>
+
+        <div class="space-y-20">
+          {designIterations.map((item, index) => (
+            <article class="border-t border-[#1f1f1f]/10 pt-12 first:border-t-0 first:pt-0">
+              <div data-reveal class="grid gap-10 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+                <div class="lg:sticky lg:top-32">
+                  <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#d66f3f]">
+                    Iteration {String(index + 1).padStart(2, "0")}
+                  </p>
+
+                  <h3 class="mt-5 text-3xl font-semibold leading-tight tracking-[-0.04em] text-[#1f1f1f] md:text-5xl">
+                    {item.title}
+                  </h3>
+
+                  <blockquote class="mt-8 border-l-4 border-[#f6c8a7] pl-5 text-lg font-medium leading-8 text-[#3d3833]">
+                    “{item.quote}”
+                  </blockquote>
+                </div>
+
+                <div>
+                  {index < 2 ? (
+                    <div class="grid gap-20 md:grid-cols-2">
+                      <figure>
+                        <figcaption class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                          Before
+                        </figcaption>
+
+                        <div class="overflow-hidden rounded-[4rem]">
+                          <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem] bg-[#fffaf3]">
+                            <img
+                              src={item.beforeImage}
+                              alt={`${item.title} before design`}
+                              class="h-full w-full object-contain object-top"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      </figure>
+
+                      <figure>
+                        <figcaption class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                          After
+                        </figcaption>
+
+                        <div class="overflow-hidden rounded-[4rem]">
+                          <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem] bg-[#fffaf3]">
+                            <img
+                              src={item.afterImage}
+                              alt={`${item.title} after design`}
+                              class="h-full w-full object-contain object-top"
+                              loading="lazy"
+                            />
+                          </div>
+                        </div>
+                      </figure>
+                    </div>
+                  ) : index === 2 ? (
+                    <div>
+                      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                        New Feature
+                      </p>
+
+                      <div class="grid gap-20 md:grid-cols-2">
+                        <figure>
+                          <div class="overflow-hidden rounded-[4rem]">
+                            <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem]">
+                              <img
+                                src={item.beforeImage}
+                                alt={`${item.title} new feature screen 1`}
+                                class="h-full w-full object-contain object-top"
+                                loading="lazy"
+                              />
+                            </div>
+                          </div>
+                        </figure>
+
+                        <figure>
+                          <div class="overflow-hidden rounded-[4rem]">
+                            <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem]">
+                              <img
+                                src={item.afterImage}
+                                alt={`${item.title} new feature screen 2`}
+                                class="h-full w-full object-contain object-top"
+                                loading="lazy"
+                              />
+                            </div>
+                          </div>
+                        </figure>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                        New Feature
+                      </p>
+
+                      <div class="grid gap-4 sm:grid-cols-2">
+                        {item.featureImages?.map((image, imageIndex) => (
+                          <figure>
+                            <div class="overflow-hidden rounded-[2rem]">
+                              <div class="aspect-[16/10] overflow-hidden rounded-[1.5rem]">
+                                <img
+                                  src={image}
+                                  alt={`${item.title} new feature screen ${imageIndex + 1}`}
+                                  class="h-full w-full object-contain object-top transition-transform duration-700 hover:scale-105"
+                                  loading="lazy"
+                                />
+                              </div>
+                            </div>
+                          </figure>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div class="mt-8 grid gap-6 border-t border-[#1f1f1f]/10 pt-6 md:grid-cols-3">
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                        Issue
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                        {item.issue}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                        Adjustment
+                      </p>
+                      <p class="mt-3 text-sm font-medium leading-7 text-[#1f1f1f]">
+                        {item.adjustment}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                        Impact
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                        {item.why}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* FINAL PRODUCT DEMO */}
+    <section id="demo" class="scroll-mt-32  px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Final Product
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Developed beta in action.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-8 text-[#5f5a54] lg:justify-self-end">
+            Instead of showing every screen, these demos highlight the core product flows: account setup, story discovery, multimedia contribution, and admin moderation.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {mobileDemos.map((demo) => (
+            <article class="overflow-hidden rounded-[2.25rem]  bg-white shadow-sm ">
+              <div class="aspect-[9/17] overflow-hidden bg-[#F4F3EE] p-3 pb-0">
+                <img
+                  src={demo.image}
+                  alt={`${demo.title} mobile demo`}
+                  class="h-full w-full rounded-t-[1.5rem] border-b-0 object-contain object-top"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="p-6">
+                <h3 class="text-xl font-semibold tracking-[-0.03em]">
+                  {demo.title}
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                  {demo.text}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <article class="mt-10 grid gap-8 rounded-[2.5rem] border border-[#1f1f1f]/10 bg-white p-5 shadow-sm lg:grid-cols-[0.45fr_0.55fr] lg:items-center lg:p-8">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Desktop Admin Flow
+            </p>
+
+            <h3 class="text-3xl font-semibold tracking-[-0.04em] text-[#1f1f1f] md:text-4xl">
+              {desktopDemo.title}
+            </h3>
+
+            <p class="mt-4 text-sm leading-7 text-[#5f5a54] md:text-base">
+              {desktopDemo.text}
+            </p>
+          </div>
+
+          <div class="overflow-hidden rounded-[1.75rem] bg-[#fffaf3]">
+            <img
+              src={desktopDemo.image}
+              alt="Admin moderation desktop demo"
+              class="aspect-[16/10] h-full w-full object-cover object-top"
+              loading="lazy"
+            />
+          </div>
+        </article>
+
+        <div class="mt-10 grid gap-6 border-t border-[#1f1f1f]/10 pt-8 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Presentation Video
+            </p>
+
+            <h3 class="text-2xl font-semibold tracking-[-0.03em] text-[#1f1f1f] md:text-3xl">
+              Full project walkthrough
+            </h3>
+
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-[#5f5a54]">
+              For a fuller overview, the project presentation walks through the concept, product logic, and developed beta. This video is included as a supporting artifact rather than the main case study explanation.
+            </p>
+          </div>
+
+          <div class="overflow-hidden rounded-[1.5rem] border border-[#1f1f1f]/10 bg-[#1f1f1f] shadow-sm">
+            <div class="aspect-video">
+              <iframe
+                class="h-full w-full"
+                src="https://www.youtube.com/embed/iUBN7blgfc8"
+                title="River Stories project presentation video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* REFLECTION & NEXT PROJECT */}
+    <section id="reflection" class="scroll-mt-32 bg-[#f7efe1] px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-4xl">
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            Reflection
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            What this project taught me.
+          </h2>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54] md:text-lg">
+            This project helped me connect spatial thinking, community storytelling, and product implementation into one working experience.
+          </p>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <p class="mb-6 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Key Takeaways
+            </p>
+
+            <div class="grid gap-5">
+              {reflectionTakeaways.map((item, index) => (
+                <article class="grid gap-4 rounded-[1.75rem] bg-white p-5 ring-1 ring-[#1f1f1f]/10 md:grid-cols-[auto_1fr]">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1f1f1f] text-xs font-semibold text-white">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <div>
+                    <h3 class="text-xl font-semibold leading-tight tracking-[-0.03em] text-[#1f1f1f]">
+                      {item.title}
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                      {item.text}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-6 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              If I continued this project
+            </p>
+
+            <ul class="space-y-5 rounded-[2rem] bg-white p-6 ring-1 ring-[#1f1f1f]/10 md:p-7">
+              {improvements.map((item, index) => (
+                <li class="flex gap-4 text-sm leading-7 text-[#5f5a54]">
+                  <span class="mt-0.5 text-sm font-semibold text-[#d66f3f]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-20 flex flex-col justify-between gap-8 border-t border-[#1f1f1f]/10 pt-10 md:flex-row md:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              More Work
+            </p>
+
+            <h2 class="max-w-3xl text-4xl font-semibold tracking-[-0.04em] text-[#1f1f1f] md:text-6xl">
+              Continue exploring my selected projects.
+            </h2>
+          </div>
+
+          <a
+            href={withBase("work/")}
+            class="inline-flex shrink-0 items-center justify-center rounded-full bg-[#1f1f1f] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-[#d66f3f]"
+          >
+            Back to Work
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <PageReveal />
+</BaseLayout>

@@ -1,0 +1,278 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { withBase } from "../../utils/paths";
+
+const experiences = [
+  {
+    role: "UI/UX Designer & Web Experience Builder",
+    company: "Freelance / Project-Based Work",
+    period: "2024 — Present",
+    description:
+      "Designed and built responsive digital experiences across cultural, hospitality, and service-based projects, combining UX thinking, visual design, and frontend implementation.",
+    highlights: [
+      "Created website structures, page layouts, and interface systems for event, museum, and service platforms.",
+      "Translated business and content needs into clear user flows, wireframes, and polished UI layouts.",
+      "Collaborated across design, content, and development workflows using tools such as Figma, Webflow, WordPress, and React-based projects.",
+    ],
+  },
+  {
+    role: "Website & Digital Experience Designer",
+    company: "Memor Museum / Cultural Projects",
+    period: "2024 — Present",
+    description:
+      "Worked on digital presentation, event pages, website updates, and multilingual content layouts for cultural programming and museum-related experiences.",
+    highlights: [
+      "Improved website content hierarchy, readability, and event page presentation for public-facing audiences.",
+      "Created bilingual and cross-cultural content structures for exhibitions, events, and marketing pages.",
+      "Balanced visual storytelling, accessibility, and practical website maintenance needs.",
+    ],
+  },
+  {
+    role: "UI/UX & Frontend-Oriented Product Contributor",
+    company: "Hospitality / Service System Projects",
+    period: "2025 — Present",
+    description:
+      "Worked on interface planning and frontend implementation for service workflows such as queue management, VIP concierge experiences, and internal operation tools.",
+    highlights: [
+      "Designed user flows and interface states for customer-facing and staff-facing service interactions.",
+      "Helped translate operational requirements into usable screens, components, and interaction logic.",
+      "Worked with Next.js, TypeScript, Material UI, and component-based frontend structures.",
+    ],
+  },
+];
+
+const skills = [
+  "UI/UX Design",
+  "Product Thinking",
+  "User Flow",
+  "Wireframing",
+  "Responsive Web Design",
+  "Design Systems",
+  "Frontend Collaboration",
+  "Figma",
+  "Webflow",
+  "WordPress",
+  "HTML/CSS",
+  "Astro",
+  "React / Next.js",
+];
+
+const values = [
+  {
+    title: "Clarity first",
+    text: "I like turning messy information and complex service flows into interfaces that feel calm, understandable, and easy to use.",
+  },
+  {
+    title: "Design that can be built",
+    text: "I care about the bridge between design and implementation, so I think about layout, responsiveness, states, and real-world constraints early.",
+  },
+  {
+    title: "Warm digital experiences",
+    text: "I’m drawn to interfaces that feel approachable and human, especially in cultural, service, and community-centered contexts.",
+  },
+];
+---
+
+<BaseLayout
+  title="About | Ziyan Zhou"
+  description="Learn more about Ziyan Zhou, a UI/UX designer and frontend-oriented product builder."
+>
+  <Header />
+
+  <main>
+    <section class="relative overflow-hidden px-5 py-14 md:px-8 md:py-20 lg:px-12">
+      <div class="absolute left-[-10rem] top-10 h-80 w-80 rounded-full bg-[#f6c8a7]/40 blur-3xl"></div>
+      <div class="absolute bottom-0 right-[-12rem] h-96 w-96 rounded-full bg-[#f1d9a7]/50 blur-3xl"></div>
+
+      <div class="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <div>
+          <p class="mb-5 inline-flex rounded-full border border-[#1f1f1f]/10 bg-white/60 px-4 py-2 text-sm font-medium text-[#5f4a3d] shadow-sm">
+            About Me
+          </p>
+
+          <h1 class="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#1f1f1f] md:text-7xl">
+            Designer with a builder’s mindset.
+          </h1>
+
+          <div class="mt-8 space-y-5 text-lg leading-8 text-[#4f4a45]">
+            <p>
+              Hi, I’m Ziyan — a UI/UX designer who enjoys creating clear, accessible, and visually engaging digital experiences.
+            </p>
+
+            <p>
+              My work sits between design strategy and implementation. I like shaping user flows, refining interface details, and thinking through how a design actually works across screens, states, and real-world use cases.
+            </p>
+
+            <p>
+              I’m especially interested in cultural, hospitality, service, and community-centered products where digital experiences need to feel both useful and human.
+            </p>
+          </div>
+
+          <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+            <a
+              href={withBase("work/")}
+              class="inline-flex items-center justify-center rounded-full bg-[#1f1f1f] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-[#d66f3f]"
+            >
+              View My Work
+            </a>
+
+            <a
+              href={withBase("#contact")}
+              class="inline-flex items-center justify-center rounded-full border border-[#1f1f1f]/20 px-6 py-3 text-sm font-semibold text-[#1f1f1f] transition-all hover:-translate-y-1 hover:border-[#1f1f1f]"
+            >
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="mx-auto max-w-[420px] overflow-hidden rounded-[2.5rem] border border-[#1f1f1f]/10 bg-white/70 p-3 shadow-2xl shadow-[#d66f3f]/10 lg:max-w-[460px]">
+            <div class="aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#f7efe1]">
+              <img
+                src={withBase("images/about/profile.jpg")}
+                alt="Portrait of Ziyan Zhou"
+                class="h-full w-full object-cover object-center"
+                loading="eager"
+              />
+            </div>
+          </div>
+
+          <div class="absolute -bottom-5 left-[25%] hidden -translate-x-1/2 rounded-2xl bg-[#ffe23f] px-5 py-4 text-sm font-semibold shadow-xl md:block">
+            UI/UX · Web · Product · Front-end
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-10 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Design Approach
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              How I think about design.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-7 text-[#5f5a54] md:justify-self-end">
+            I care about creating experiences that are visually thoughtful, easy to understand, and realistic to implement.
+          </p>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          {values.map((value, index) => (
+            <article class="rounded-[1.75rem] border border-[#1f1f1f]/10 bg-white/70 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <p class="mb-8 text-sm uppercase tracking-[0.18em] text-[#d66f3f]">
+                {String(index + 1).padStart(2, "0")}
+              </p>
+
+              <h3 class="text-2xl font-semibold tracking-[-0.03em]">
+                {value.title}
+              </h3>
+
+              <p class="mt-4 text-sm leading-7 text-[#5f5a54]">
+                {value.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#f7efe1] px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-10 grid gap-6 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Experience
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Work experience.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-7 text-[#5f5a54] md:justify-self-end">
+            A mix of UI/UX design, web experience, content structure, and frontend-oriented product work.
+          </p>
+        </div>
+
+        <div class="space-y-5">
+          {experiences.map((experience) => (
+            <article class="grid gap-6 rounded-[2rem] border border-[#1f1f1f]/10 bg-white/75 p-6 shadow-sm md:grid-cols-[0.75fr_1.25fr] md:p-8">
+              <div>
+                <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#d66f3f]">
+                  {experience.period}
+                </p>
+
+                <h3 class="mt-4 text-2xl font-semibold tracking-[-0.03em]">
+                  {experience.role}
+                </h3>
+
+                <p class="mt-2 text-sm font-medium text-[#5f5a54]">
+                  {experience.company}
+                </p>
+              </div>
+
+              <div>
+                <p class="text-base leading-7 text-[#4f4a45]">
+                  {experience.description}
+                </p>
+
+                <ul class="mt-5 space-y-3">
+                  {experience.highlights.map((highlight) => (
+                    <li class="flex gap-3 text-sm leading-6 text-[#5f5a54]">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#d66f3f]"></span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div class="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-[#1f1f1f]/10 bg-white p-6 shadow-sm md:p-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            Skills
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            Tools and strengths.
+          </h2>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap gap-3">
+            {skills.map((skill) => (
+              <span class="rounded-full bg-[#fffaf3] px-4 py-2 text-sm font-medium text-[#3b3b3b] ring-1 ring-[#1f1f1f]/10">
+                {skill}
+              </span>
+            ))}
+          </div>
+
+          <div class="mt-10 rounded-[1.5rem] bg-[#1f1f1f] p-6 text-white">
+            <p class="text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+              Currently looking for
+            </p>
+
+            <p class="mt-4 max-w-2xl text-xl font-semibold leading-8">
+              UI/UX design, product design, web experience, or frontend-oriented design roles where I can connect design thinking with practical execution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
