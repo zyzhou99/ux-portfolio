@@ -1,0 +1,968 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import PageReveal from "../../../components/PageReveal.astro";
+import CaseStudyNav from "../../../components/CaseStudyNav.astro";
+import { withBase } from "../../../utils/paths";
+
+const icons = {
+  calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>`,
+  caregiver: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11a4 4 0 1 0-8 0"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M18 8h1a3 3 0 0 1 0 6h-1"/><path d="M6 8H5a3 3 0 0 0 0 6h1"/></svg>`,
+  symptom: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-4.4 7-11a7 7 0 0 0-14 0c0 6.6 7 11 7 11z"/><path d="M12 7v5"/><path d="M12 16h.01"/></svg>`,
+  pills: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 21 3 13.5a5 5 0 0 1 7-7l7.5 7.5a5 5 0 0 1-7 7Z"/><path d="m7 10 7 7"/><path d="M18 3a3 3 0 0 1 3 3v2h-6V6a3 3 0 0 1 3-3Z"/><path d="M15 8v5a3 3 0 0 0 6 0V8"/></svg>`,
+  bell: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg>`,
+  scan: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5a1 1 0 0 1 1-1h3"/><path d="M16 4h3a1 1 0 0 1 1 1v3"/><path d="M20 16v3a1 1 0 0 1-1 1h-3"/><path d="M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M7 12h10"/></svg>`,
+  share: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4"/><path d="m15.4 6.5-6.8 4"/></svg>`,
+  box: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5-9 4.5L3 7.5Z"/><path d="M3 7.5V16.5L12 21l9-4.5V7.5"/><path d="M12 12v9"/></svg>`,
+};
+
+const challengeConstraints = [
+  "Medication routines change across meals, school, work, and caregiving schedules",
+  "Patients and caregivers may not share the same medication status",
+  "Wrong dosage, missed refills, and side effects can create real health risks",
+];
+
+const researchStats = [
+  { label: "Interviews", value: "6", text: "3 caregivers and 3 patients" },
+  { label: "Research synthesis", value: "4", text: "Main pain points from affinity mapping" },
+  { label: "Design artifacts", value: "4", text: "2 personas and 2 storyboards" },
+];
+
+const researchInsights = [
+  {
+    title: "Forgetting to take or refill medicine",
+    illustration: withBase("images/projects/smartmeds/problem4.png"),
+    text:
+      "Medication routines are easy to break when daily schedules shift or when refills are not visible enough.",
+    quotes: [
+      "My time for lunch is not regular, so I cannot set an alarm to remind myself.",
+      "There were several times that I forgot to take my medication at noon.",
+      "Sometimes I still forget.",
+    ],
+  },
+  {
+    title: "Communication gaps between caregivers and doctors",
+    illustration: withBase("images/projects/smartmeds/problem3.png"),
+    text:
+      "Caregivers may not know what was taken, missed, changed, or reported to doctors.",
+    quotes: [
+      "Me and my sister both forgot to give my grandfather his medicines sometimes.",
+      "When the doctor asked me about my grandfather’s medicine, I wasn’t able to remember everything.",
+      "We took care of him at different times and didn’t communicate well.",
+    ],
+  },
+  {
+    title: "Unclear information about medicine and side effects",
+    illustration: withBase("images/projects/smartmeds/problem1.png"),
+    text:
+      "Patients may not connect symptoms to medication early enough, especially when side-effect information is hard to read.",
+    quotes: [
+      "I did not pay enough attention to the side effects until my dizziness got very serious.",
+      "I wish I could communicate with my doctor sooner to avoid it.",
+      "Being aware of the side effects is very important.",
+    ],
+  },
+  {
+    title: "Taking the wrong medicine",
+    illustration: withBase("images/projects/smartmeds/problem2.png"),
+    text:
+      "Similar-looking medicine packages and pills can create confusion, especially when users are tired, sick, or under stress.",
+    quotes: [
+      "When I was at my worst, I could not tell what medicine I was taking.",
+      "I could not count how many pills there were.",
+      "My mom accidentally gave the wrong pills to my dad because they had similar packages side by side.",
+    ],
+  },
+];
+
+const researchArtifacts = [
+  {
+    title: "Primary Persona: Sarah",
+    label: "Caregiver",
+    text:
+      "Sarah represents family caregivers who coordinate medication routines, refills, and doctor communication for loved ones.",
+    image: withBase("images/projects/smartmeds/persona-caregiver.jpg"),
+  },
+  {
+    title: "Secondary Persona: Adam",
+    label: "Patient",
+    text:
+      "Adam represents patients who need privacy, consistency, and support while balancing medication with daily life.",
+    image: withBase("images/projects/smartmeds/persona-patient.jpg"),
+  },
+  {
+    title: "Use Case 1",
+    label: "Caregiver storyboard",
+    text:
+      "The caregiver scenario shows how SmartMeds can notify a family member when medication is missed or completed.",
+    image: withBase("images/projects/smartmeds/storyboard-caregiver.jpg"),
+  },
+  {
+    title: "Use Case 2",
+    label: "Patient storyboard",
+    text:
+      "The patient scenario shows how the app and pillbox can support independent medication routines.",
+    image: withBase("images/projects/smartmeds/storyboard-patient.jpg"),
+  },
+];
+
+const strategyCards = [
+  {
+    title: "Remind",
+    icon: icons.bell,
+    text:
+      "Personalized schedules and refill reminders help users maintain routines without relying on memory alone.",
+    details: ["Medication schedule", "Refill reminder", "Private notification"],
+  },
+  {
+    title: "Verify",
+    icon: icons.scan,
+    text:
+      "Scanning and Bluetooth pillbox feedback help users identify the correct medicine before placing or taking a dose.",
+    details: ["Scan medicine", "Check instructions", "Confirm pillbox placement"],
+  },
+  {
+    title: "Communicate",
+    icon: icons.share,
+    text:
+      "Notes, side-effect logs, and sharing features help caregivers and doctors understand recovery progress.",
+    details: ["Side-effect notes", "Caregiver sharing", "Recovery records"],
+  },
+];
+
+const flowGroups = [
+  {
+    label: "Input",
+    title: "Add medication",
+    steps: ["Scan medicine", "Review medicine information", "Add to personal list"],
+  },
+  {
+    label: "Routine",
+    title: "Set reminders",
+    steps: ["Choose medication", "Set dosage and frequency", "Receive reminder"],
+  },
+  {
+    label: "Record",
+    title: "Log side effects",
+    steps: ["Record symptom", "Attach medication context", "Track recovery progress"],
+  },
+  {
+    label: "Verify",
+    title: "Check pillbox",
+    steps: ["Confirm compartment", "Place correct medicine", "Sync pillbox status"],
+  },
+  {
+    label: "Share",
+    title: "Update caregivers",
+    steps: ["Select care contact", "Choose update", "Share medication status"],
+  },
+];
+
+const quickFacts = [
+  { label: "Timeline", value: "Fall 2022" },
+  { label: "Role", value: "UI/UX Design · User Research · 3D Modeling" },
+  { label: "Team", value: "3 designers" },
+  { label: "Project Type", value: "Mobile App · Connected Pillbox Concept" },
+];
+
+const tools = [
+  "Figma",
+  "Illustrator",
+  "Photoshop",
+  "After Effects",
+  "Rhino",
+];
+
+const methods = [
+  "Interviews",
+  "Affinity Mapping",
+  "Personas",
+  "Usability Testing",
+  "Heuristic Evaluation",
+];
+
+const caseNavItems = [
+  { label: "Problem", href: "#problem" },
+  { label: "Research", href: "#research" },
+  { label: "Strategy", href: "#strategy" },
+  { label: "Flows", href: "#flows" },
+  { label: "Iterations", href: "#iterations" },
+  { label: "Final Design", href: "#final-design" },
+  { label: "Pillbox", href: "#pillbox" },
+  { label: "Reflection", href: "#reflection" },
+];
+
+const designIterations = [
+  {
+    title: "Home page iteration",
+    quote:
+      "Users were confused about the purpose of the calendar and reminders on the home page.",
+    issue:
+      "The early home page tried to show too many reminder-related details at once. Users were confused by the “+” button, the naming of reminders by meals, and the relationship between the calendar and reminder section. The refill reminder was also not visible enough for users who needed to plan ahead.",
+    adjustment:
+      "We removed the unclear “+” action, added a refill reminder below the calendar, renamed reminders based on sequence instead of meals, and redesigned reminder cards to prioritize time, medication preview, and daily status. We also added supportive calendar feedback and a quick-share action for care communication.",
+    impact:
+      "The home page became less text-heavy and more task-oriented. Users could more quickly understand what medication action was coming next, whether refills needed attention, and how to communicate updates with others.",
+    beforeImage: withBase("images/projects/smartmeds/home-before.jpg"),
+    afterImage: withBase("images/projects/smartmeds/home-after.jpg"),
+  },
+  {
+    title: "Medicine list iteration",
+    quote:
+      "Users needed clearer status cues for newly added medicine, reminders, and page location.",
+    issue:
+      "The medicine list lacked enough visual indication. Newly added medicine was not clearly marked, reminder time was not visible, and users were confused by icons such as the reminder bell, the distribute icon, and the current page state in the bottom navigation.",
+    adjustment:
+      "We added a “New” label for newly added medicine, surfaced reminder time on the medicine preview card, enlarged the medication preview, clarified the bell icon states, changed the distribute icon to a pillbox top-view symbol, and highlighted the active page in the toolbar.",
+    impact:
+      "The medicine list became more informative at a glance. Users could identify new medication, understand reminder status, and distinguish between medicine information, reminder settings, and pillbox distribution with less guesswork.",
+    beforeImage: withBase("images/projects/smartmeds/med-list-before.jpg"),
+    afterImage: withBase("images/projects/smartmeds/med-list-after.jpg"),
+  },
+  {
+    title: "Medicine info page iteration",
+    quote:
+      "Users were confused by the edit/add actions and overwhelmed by dense medicine information.",
+    issue:
+      "The medicine information page had several interaction and readability issues. The Edit and Add buttons were confusing, dosage editing lacked clear error prevention, the information and dosage sections felt text-heavy, and the face rating scale did not match the task because it looked like satisfaction feedback rather than medication verification.",
+    adjustment:
+      "We changed “Add” to “Save” and moved it to the top right, added plus-minus controls for dosage editing, separated medicine information from dosage settings, added manual search as a backup for incorrect scan results, removed the face rating scale, and moved detailed medicine information into a bottom section with a speaker icon and visual side-effect cue.",
+    impact:
+      "The page became more understandable and safer for medication setup. Users had clearer save/edit actions, more flexible dosage control, better support when scanning failed, and a less overwhelming way to review side effects and instructions.",
+    beforeImage: withBase("images/projects/smartmeds/med-info-before.jpg"),
+    afterImage: withBase("images/projects/smartmeds/med-info-after.jpg"),
+  },
+];
+
+const finalMobileFeatures = [
+  {
+    title: "Scan medicine information",
+    text:
+      "Users can add medication and read side effects without relying on tiny prescription sheets.",
+    image: withBase("images/projects/smartmeds/demo-scan.gif"),
+  },
+  {
+    title: "Set thoughtful reminders",
+    text:
+      "Reminders support privacy and reduce reminder fatigue through customizable notification styles.",
+    image: withBase("images/projects/smartmeds/demo-reminder.gif"),
+  },
+  {
+    title: "Share notes with caregivers",
+    text:
+      "Side effects and recovery updates can be documented and shared with caregivers or doctors.",
+    image: withBase("images/projects/smartmeds/demo-notes.gif"),
+  },
+];
+
+const finalDistributionFeature = {
+  title: "Check medicine distribution",
+  text:
+    "The app and pillbox help confirm whether the correct medication is placed in the right compartment. This flow connects the mobile interface with the physical pillbox, so the demo uses a mixed vertical and horizontal screen format.",
+  image: withBase("images/projects/smartmeds/demo-pillbox-check.gif"),
+};
+
+const reflectionTakeaways = [
+  {
+    title: "Healthcare UX needs both clarity and safety",
+    text:
+      "Medication management is not just about convenience. Small interface decisions can affect confidence, communication, and risk prevention.",
+  },
+  {
+    title: "Physical and digital routines should support each other",
+    text:
+      "The pillbox concept helped me think about how digital products can extend into daily physical behavior.",
+  },
+  {
+    title: "Research can make an early concept more grounded",
+    text:
+      "Interview insights helped us move beyond a simple alarm app toward a connected care coordination system.",
+  },
+];
+
+const improvements = [
+  "Improve accessibility for older adults with stronger typography, contrast, and touch targets.",
+  "Refine caregiver permission controls and sharing settings.",
+  "Add stronger medication safety constraints around dosage and interaction warnings.",
+  "Test the Bluetooth pillbox concept with more realistic hardware feasibility constraints.",
+  "Simplify the visual design system with a more mature hierarchy.",
+];
+---
+
+<BaseLayout
+  title="SmartMeds | Ziyan Zhou"
+  description="A connected medication management app and Bluetooth pillbox concept by Ziyan Zhou."
+>
+  <Header />
+
+  <main>
+    <section class="relative overflow-hidden px-5 py-12 md:px-8 md:py-18 lg:px-12">
+      <div class="absolute left-[-10rem] top-10 h-80 w-80 rounded-full bg-[#f6c8a7]/40 blur-3xl"></div>
+      <div class="absolute bottom-0 right-[-12rem] h-96 w-96 rounded-full bg-[#f1d9a7]/50 blur-3xl"></div>
+
+      <div class="relative mx-auto max-w-7xl">
+        <a
+          href={withBase("work/")}
+          class="mb-8 inline-flex text-sm font-semibold text-[#5f5a54] transition-colors hover:text-[#d66f3f]"
+        >
+          ← Back to Work
+        </a>
+
+        <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div data-reveal>
+            <p class="mb-5 inline-flex rounded-full border border-[#1f1f1f]/10 bg-white/60 px-4 py-2 text-sm font-medium text-[#5f4a3d] shadow-sm">
+              Healthcare UX · Mobile App · Connected Product
+            </p>
+
+            <h1 class="text-5xl font-semibold leading-[0.92] tracking-[-0.065em] text-[#1f1f1f] md:text-7xl lg:text-8xl">
+              SmartMeds
+            </h1>
+
+            <p class="mt-6 max-w-2xl text-xl font-medium leading-8 text-[#3d3833] md:text-2xl">
+              A connected medication management concept for patients and caregivers.
+            </p>
+
+            <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54] md:text-lg">
+              SmartMeds combines a mobile app and Bluetooth pillbox to help patients and caregivers track medication schedules, intake records, refills, and side effects.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-2">
+              {[...tools, ...methods].map((item) => (
+                <span class="rounded-full border border-[#1f1f1f]/10 bg-white/70 px-3 py-1.5 text-xs font-medium text-[#5f5a54]">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div
+            data-reveal
+            data-reveal-delay="1"
+            class="overflow-hidden rounded-[2.5rem] border border-[#1f1f1f]/10 bg-white/70 p-3 shadow-2xl shadow-[#d66f3f]/10"
+          >
+            <div class="aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#f7efe1]">
+              <img
+                src={withBase("images/projects/smartmeds-cover.jpg")}
+                alt="SmartMeds cover image"
+                class="h-full w-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-reveal
+          data-reveal-delay="2"
+          class="mt-12 grid gap-4 rounded-[2rem] border border-[#1f1f1f]/10 bg-white/70 p-5 shadow-sm backdrop-blur md:grid-cols-4"
+        >
+          {quickFacts.map((fact) => (
+            <div class="border-[#1f1f1f]/10 md:border-r md:last:border-r-0 md:px-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#d66f3f]">
+                {fact.label}
+              </p>
+
+              <p class="mt-2 text-sm font-semibold leading-6 text-[#1f1f1f]">
+                {fact.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CaseStudyNav items={caseNavItems} />
+
+    <section id="problem" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-5xl text-center">
+        <p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+          The Challenge
+        </p>
+
+        <h2 class="text-3xl font-medium leading-relaxed text-[#4f4a45] md:text-4xl">
+          “How might we help patients and caregivers manage medication routines, avoid dosage mistakes, and communicate side effects during recovery?”
+        </h2>
+
+        <div class="mt-12 grid gap-4 text-left sm:grid-cols-3">
+          {challengeConstraints.map((constraint) => (
+            <div class="rounded-[1.5rem] bg-[#fffaf3] p-5 text-center text-sm font-medium leading-6 ring-1 ring-[#1f1f1f]/10 shadow-sm">
+              {constraint}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="scroll-mt-32 bg-[#f7efe1] px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-10 lg:grid-cols-[0.9fr_1fr] lg:items-start">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Research Insights
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Interview quotes revealed four recurring medication pain points.
+            </h2>
+          </div>
+
+          <div class="lg:justify-self-end">
+            <p class="max-w-2xl text-base leading-8 text-[#5f5a54]">
+              We interviewed caregivers and patients, then synthesized repeated quotes through affinity mapping. Instead of treating each quote separately, we grouped them into four medication management challenges.
+            </p>
+
+            <div class="mt-8 grid gap-4 sm:grid-cols-3">
+              {researchStats.map((stat) => (
+                <div class="rounded-[1.5rem] bg-white/75 p-5 ring-1 ring-[#1f1f1f]/10">
+                  <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                    {stat.label}
+                  </p>
+
+                  <p class="mt-3 text-4xl font-semibold tracking-[-0.05em] text-[#1f1f1f]">
+                    {stat.value}
+                  </p>
+
+                  <p class="mt-2 text-sm leading-6 text-[#5f5a54]">
+                    {stat.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-4">
+          {researchInsights.map((insight, index) => (
+            <article class="group flex flex-col rounded-[2rem] bg-white p-6 shadow-sm ring-1 ring-[#1f1f1f]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="mb-6 flex min-h-[140px] items-center justify-center rounded-[1.5rem] bg-[#fffaf3] p-4">
+                <img
+                  src={insight.illustration}
+                  alt={`${insight.title} illustration`}
+                  class="max-h-28 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+
+              <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                Pain Point {String(index + 1).padStart(2, "0")}
+              </p>
+
+              <h3 class="text-xl font-semibold leading-tight tracking-[-0.03em] text-[#1f1f1f]">
+                {insight.title}
+              </h3>
+
+              <p class="mt-4 text-sm leading-7 text-[#5f5a54]">
+                {insight.text}
+              </p>
+
+              <div class="mt-6 space-y-3">
+                {insight.quotes.map((quote) => (
+                  <blockquote class="rounded-[1.25rem] bg-[#fffaf3] p-4 text-sm leading-6 text-[#4f4a45] ring-1 ring-[#1f1f1f]/5">
+                    “{quote}”
+                  </blockquote>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-16 border-t border-[#1f1f1f]/10 pt-10">
+          <div class="mb-8 max-w-3xl">
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              From Research to Use Cases
+            </p>
+
+            <h3 class="text-3xl font-semibold tracking-[-0.04em] text-[#1f1f1f] md:text-4xl">
+              Personas and storyboards helped translate interview pain points into care scenarios.
+            </h3>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {researchArtifacts.map((artifact, index) => (
+              <a
+                href={artifact.image}
+                target="_blank"
+                rel="noreferrer"
+                class="group overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-[#1f1f1f]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div class="aspect-[4/3] overflow-hidden bg-[#fffaf3]">
+                  <img
+                    src={artifact.image}
+                    alt={`${artifact.title} preview`}
+                    class={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${index < 2 ? "object-[left_center]" : "object-top"}`}
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="p-6">
+                  <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                    {artifact.label}
+                  </p>
+
+                  <h4 class="text-xl font-semibold tracking-[-0.03em] text-[#1f1f1f]">
+                    {artifact.title}
+                  </h4>
+
+                  <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                    {artifact.text}
+                  </p>
+
+                  <p class="mt-5 text-sm font-semibold text-[#d66f3f]">
+                    Open full artifact →
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="strategy" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Product Strategy
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              More than another alarm app.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-8 text-[#5f5a54] lg:justify-self-end">
+            The solution needed to support the full medication routine: remembering, verifying, documenting, and communicating.
+          </p>
+        </div>
+
+        <div class="rounded-[2.75rem] bg-[#1f1f1f] p-6 text-white shadow-xl md:p-10">
+          <div class="mb-10 max-w-3xl">
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+              Care Loop
+            </p>
+
+            <h3 class="text-3xl font-semibold tracking-[-0.04em] md:text-5xl">
+              SmartMeds connects reminders, medicine verification, and care communication into one routine.
+            </h3>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-3">
+            {strategyCards.map((pillar, index) => (
+              <article class="relative rounded-[2rem] bg-white/[0.06] p-6 ring-1 ring-white/10">
+                <div class="mb-8 flex items-center justify-between gap-4">
+                  <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-[#f6c8a7] ring-1 ring-white/10">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  {index < strategyCards.length - 1 && (
+                    <span class="hidden text-2xl text-white/30 lg:block">
+                      →
+                    </span>
+                  )}
+                </div>
+
+                <h4 class="text-3xl font-semibold tracking-[-0.04em]">
+                  {pillar.title}
+                </h4>
+
+                <p class="mt-4 text-sm leading-7 text-white/70">
+                  {pillar.text}
+                </p>
+
+                <div class="mt-6 flex flex-wrap gap-2">
+                  {pillar.details.map((detail) => (
+                    <span class="rounded-full bg-white/10 px-3 py-1.5 text-xs font-medium text-white/75 ring-1 ring-white/10">
+                      {detail}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="flows" class="scroll-mt-32 bg-[#1f1f1f] px-5 py-16 text-white md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+              Key User Flows
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              The routine moves from input to shared care.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-8 text-white/65 lg:justify-self-end">
+            Instead of showing every possible screen path, these flows summarize the moments that make SmartMeds more than a reminder app.
+          </p>
+        </div>
+
+        <div class="mb-8 rounded-[2rem] bg-white/[0.06] p-6 ring-1 ring-white/10 md:p-8">
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#f6c8a7]">
+            Flow Model
+          </p>
+
+          <h3 class="text-3xl font-semibold tracking-[-0.04em] md:text-5xl">
+            Input → Remind → Record → Verify → Share
+          </h3>
+
+          <p class="mt-5 max-w-3xl text-sm leading-7 text-white/65">
+            SmartMeds connects everyday medication tasks with caregiver coordination, so the user is not managing recovery alone.
+          </p>
+        </div>
+
+        <div class="overflow-hidden rounded-[2.5rem] ring-1 ring-white/10">
+          {flowGroups.map((flow, index) => (
+            <article class="grid gap-6 border-b border-white/10 bg-white/[0.04] p-6 last:border-b-0 transition-all duration-300 hover:bg-white/[0.08] md:grid-cols-[0.34fr_0.66fr] md:p-7">
+              <div>
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#f6c8a7]">
+                  {flow.label} · {String(index + 1).padStart(2, "0")}
+                </p>
+
+                <h3 class="text-2xl font-semibold tracking-[-0.03em]">
+                  {flow.title}
+                </h3>
+              </div>
+
+              <ol class="grid gap-3 sm:grid-cols-3">
+                {flow.steps.map((step, stepIndex) => (
+                  <li class="rounded-[1.25rem] bg-white/[0.06] p-4 text-sm leading-6 text-white/75 ring-1 ring-white/10">
+                    <span class="mb-3 flex h-6 w-6 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white">
+                      {stepIndex + 1}
+                    </span>
+
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="iterations" class="scroll-mt-32 bg-white px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div class="mx-auto max-w-7xl">
+        <div data-reveal class="mb-16 max-w-4xl">
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            Testing & Iterations
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            Making medication tasks easier to scan and understand.
+          </h2>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54]">
+            We used heuristic evaluation and usability testing to identify where users misunderstood actions, missed status cues, or felt overwhelmed by medication information. The strongest revisions focused on the home page, medicine list, and medicine information page.
+        </div>
+
+        <div class="space-y-20">
+          {designIterations.map((item, index) => (
+            <article class="border-t border-[#1f1f1f]/10 pt-12 first:border-t-0 first:pt-0">
+              <div data-reveal class="grid gap-10 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+                <div class="lg:sticky lg:top-32">
+                  <p class="text-sm font-semibold uppercase tracking-[0.18em] text-[#d66f3f]">
+                    Iteration {String(index + 1).padStart(2, "0")}
+                  </p>
+
+                  <h3 class="mt-5 text-3xl font-semibold leading-tight tracking-[-0.04em] text-[#1f1f1f] md:text-5xl">
+                    {item.title}
+                  </h3>
+
+                  <blockquote class="mt-8 border-l-4 border-[#f6c8a7] pl-5 text-lg font-medium leading-8 text-[#3d3833]">
+                    “{item.quote}”
+                  </blockquote>
+                </div>
+
+                <div>
+                  <div class="grid gap-24 md:grid-cols-2">
+                    <figure>
+                      <figcaption class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                        Low-Fi Prototype
+                      </figcaption>
+
+                      <div class="overflow-hidden rounded-[2rem]">
+                        <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem] bg-[#fffaf3]">
+                          <img
+                            src={item.beforeImage}
+                            alt={`${item.title} before design`}
+                            class="h-full w-full object-contain object-top"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </figure>
+
+                    <figure>
+                      <figcaption class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                        Hi-Fi Prototype
+                      </figcaption>
+
+                      <div class="overflow-hidden rounded-[2rem]">
+                        <div class="aspect-[9/18] overflow-hidden rounded-[1.5rem] bg-[#fffaf3]">
+                          <img
+                            src={item.afterImage}
+                            alt={`${item.title} after design`}
+                            class="h-full w-full object-contain object-top"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </figure>
+                  </div>
+
+                  <div class="mt-8 grid gap-6 border-t border-[#1f1f1f]/10 pt-6 md:grid-cols-3">
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                        Issue
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                        {item.issue}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#d66f3f]">
+                        Design Change
+                      </p>
+                      <p class="mt-3 text-sm font-medium leading-7 text-[#1f1f1f]">
+                        {item.adjustment}
+                      </p>
+                    </div>
+
+                    <div>
+                      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#5f5a54]">
+                        Impact
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                        {item.impact}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="final-design" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-6 lg:grid-cols-[1.25fr_0.8fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Final Design
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Designed around medication confidence.
+            </h2>
+          </div>
+
+          <p class="max-w-2xl text-base leading-8 text-[#5f5a54] lg:justify-self-end">
+            The final concept connects medication information, reminders, notes, sharing, and pillbox distribution into one care management experience.
+          </p>
+        </div>
+
+        <div class="grid gap-10 md:grid-cols-3">
+          {finalMobileFeatures.map((feature) => (
+            <article class="overflow-hidden rounded-[2.25rem] bg-white shadow-sm ring-1 ring-[#1f1f1f]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+              <div class="aspect-[9/19] overflow-hidden p-3 pb-0">
+                <img
+                  src={feature.image}
+                  alt={`${feature.title} demo`}
+                  class="h-full w-full rounded-t-[1.5rem] object-contain object-top"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="p-6">
+                <h3 class="text-xl font-semibold tracking-[-0.03em]">
+                  {feature.title}
+                </h3>
+
+                <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                  {feature.text}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <article class="mt-8 grid gap-8 overflow-hidden rounded-[2.5rem] bg-white p-5 shadow-sm ring-1 ring-[#1f1f1f]/10 lg:grid-cols-[0.42fr_0.58fr] lg:items-center lg:p-8">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Pillbox Verification Flow
+            </p>
+
+            <h3 class="text-3xl font-semibold tracking-[-0.04em] text-[#1f1f1f] md:text-4xl">
+              {finalDistributionFeature.title}
+            </h3>
+
+            <p class="mt-4 text-sm leading-7 text-[#5f5a54] md:text-base md:leading-8">
+              {finalDistributionFeature.text}
+            </p>
+          </div>
+
+          <div class="overflow-hidden rounded-[2rem] p-3">
+            <div class="aspect-square overflow-hidden rounded-[1.5rem]">
+              <img
+                src={finalDistributionFeature.image}
+                alt={`${finalDistributionFeature.title} demo`}
+                class="h-full w-full object-contain object-center"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="pillbox" class="scroll-mt-32 bg-[#f7efe1] px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Bluetooth Pillbox Concept
+            </p>
+
+            <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+              Extending reminders into the physical medication routine.
+            </h2>
+          </div>
+
+          <div class="max-w-2xl text-base leading-8 text-[#5f5a54] lg:justify-self-end">
+            <p>
+              The Bluetooth pillbox extends the mobile experience into the physical medication routine. Each compartment can light up when it is time to take a dose, and intake status can be shared with caregivers based on user settings.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <figure class="overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-sm ring-1 ring-[#1f1f1f]/10">
+            <div class="aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#fffaf3]">
+              <img
+                src={withBase("images/projects/smartmeds/pillbox-small-box.gif")}
+                alt="SmartMeds Bluetooth pillbox concept render"
+                class="h-full w-full object-contain object-center transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+
+            <figcaption class="px-2 pt-4 text-sm leading-6 text-[#5f5a54]">
+              Physical pillbox concept designed to support medication placement and daily adherence.
+            </figcaption>
+          </figure>
+
+          <figure class="overflow-hidden rounded-[2.5rem] bg-white p-3 shadow-sm ring-1 ring-[#1f1f1f]/10">
+            <div class="aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#fffaf3]">
+              <img
+                src={withBase("images/projects/smartmeds/pillbox-takeout-med.gif")}
+                alt="SmartMeds pillbox light-up demo"
+                class="h-full w-full object-contain object-center transition-transform duration-700 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+
+            <figcaption class="px-2 pt-4 text-sm leading-6 text-[#5f5a54]">
+              Light-up compartments help users identify the correct dose and communicate intake status.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflection" class="scroll-mt-32 px-5 py-16 md:px-8 md:py-24 lg:px-12">
+      <div data-reveal class="mx-auto max-w-7xl">
+        <div class="mb-12 max-w-4xl">
+          <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+            Reflection
+          </p>
+
+          <h2 class="text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+            What this early project taught me.
+          </h2>
+
+          <p class="mt-6 max-w-2xl text-base leading-8 text-[#5f5a54] md:text-lg">
+            Since this project was completed early in my UX journey, the visual design could be refined further today. However, it helped me understand how research, physical product design, and digital interaction can work together to support real caregiving routines.
+          </p>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <p class="mb-6 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              Key Takeaways
+            </p>
+
+            <div class="grid gap-5">
+              {reflectionTakeaways.map((item, index) => (
+                <article class="grid gap-4 rounded-[1.75rem] bg-white p-5 ring-1 ring-[#1f1f1f]/10 md:grid-cols-[auto_1fr]">
+                  <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#1f1f1f] text-xs font-semibold text-white">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <div>
+                    <h3 class="text-xl font-semibold leading-tight tracking-[-0.03em] text-[#1f1f1f]">
+                      {item.title}
+                    </h3>
+
+                    <p class="mt-3 text-sm leading-7 text-[#5f5a54]">
+                      {item.text}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p class="mb-6 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              What I would improve now
+            </p>
+
+            <ul class="space-y-5 rounded-[2rem] bg-white p-6 ring-1 ring-[#1f1f1f]/10 md:p-7">
+              {improvements.map((item, index) => (
+                <li class="flex gap-4 text-sm leading-7 text-[#5f5a54]">
+                  <span class="mt-0.5 text-sm font-semibold text-[#d66f3f]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-20 flex flex-col justify-between gap-8 border-t border-[#1f1f1f]/10 pt-10 md:flex-row md:items-end">
+          <div>
+            <p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#d66f3f]">
+              More Work
+            </p>
+
+            <h2 class="max-w-3xl text-4xl font-semibold tracking-[-0.04em] text-[#1f1f1f] md:text-6xl">
+              Continue exploring my selected projects.
+            </h2>
+          </div>
+
+          <a
+            href={withBase("work/")}
+            class="inline-flex shrink-0 items-center justify-center rounded-full bg-[#1f1f1f] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-1 hover:bg-[#d66f3f]"
+          >
+            Back to Work
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <PageReveal />
+</BaseLayout>
